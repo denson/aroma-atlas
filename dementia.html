@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="author" content="Denson Smith"/>
+<title>Cannabis &amp; Dementia — what the literature rests on</title>
+<style>
+  :root{
+    --ink:#1f2937; --muted:#6b7280; --line:#e2e6eb; --accent:#0e7490;
+    --clin:#0F766E; --clin-soft:#E6F4F1; --mech:#7c3aed; --mech-soft:#F1ECFD;
+    --warn:#C2410C;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:#f4f5f7;color:var(--ink);font-family:var(--font);line-height:1.65;}
+  .sheet{max-width:830px;margin:26px auto;background:#fff;border:1px solid var(--line);border-radius:14px;
+         padding:40px 48px 56px;box-shadow:0 1px 3px rgba(0,0,0,.04);}
+  @media(max-width:560px){.sheet{padding:24px 20px;margin:10px;}}
+  h1{font-size:27px;line-height:1.2;margin:0 0 6px;letter-spacing:-.015em;}
+  .dek{color:var(--muted);font-size:15px;margin:0 0 4px;}
+  .by{color:var(--muted);font-size:12.5px;margin:0;}
+  h2{font-size:20px;margin:34px 0 8px;letter-spacing:-.01em;}
+  h3{font-size:15px;margin:22px 0 4px;}
+  p{margin:11px 0;}
+  a{color:var(--accent);text-decoration:none;border-bottom:1px solid #bae6fd;}
+  a:hover{border-bottom-color:var(--accent);}
+  .note{background:#fafbfc;border:1px solid var(--line);border-left:3px solid var(--muted);
+        border-radius:0 8px 8px 0;padding:11px 15px;font-size:13.5px;color:#374151;margin:16px 0;}
+  .pillar{border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:12px 0;}
+  .pillar .tag{font-size:11px;text-transform:uppercase;letter-spacing:.05em;font-weight:700;}
+  .pill-clin{border-left:4px solid var(--clin);} .pill-clin .tag{color:var(--clin);}
+  .pill-mech{border-left:4px solid var(--mech);} .pill-mech .tag{color:var(--mech);}
+  .pill-base{border-left:4px solid #475569;} .pill-base .tag{color:#475569;}
+  ul{margin:8px 0;padding-left:20px;} li{margin:5px 0;font-size:14px;}
+  .ref{font-size:13.5px;} .ref b{color:#111827;} .cit{color:var(--muted);font-size:12px;}
+  .new{display:flex;gap:12px;margin:12px 0;} .new .n{font-size:22px;font-weight:700;color:var(--accent);min-width:26px;}
+  .warnbox{background:#fdf3ee;border:1px solid #f3c9b3;border-left:3px solid var(--warn);border-radius:0 8px 8px 0;
+           padding:11px 15px;font-size:13.5px;margin:16px 0;}
+  figure{margin:18px 0;} figcaption{font-size:12.5px;color:var(--muted);text-align:center;margin-top:6px;}
+  svg{display:block;width:100%;height:auto;}
+  .foot{margin-top:30px;border-top:1px solid var(--line);padding-top:14px;color:var(--muted);font-size:12px;}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <p style="margin:0 0 12px"><a href="index.html">← Back to the aroma atlas</a></p>
+  <h1>Cannabis &amp; dementia: what the literature actually rests on</h1>
+  <p class="dek">A co-citation analysis of the field's key papers — built from the citation graph, not the headlines.</p>
+  <p class="by">stoagen · author: Denson Smith · 2026-06-30</p>
+
+  <div class="note"><b>How this was made.</b> Nine key cannabis-and-dementia papers (reviews, trials, and
+  preclinical landmarks) were pulled, and their reference lists were read from <b>OpenAlex</b>'s citation
+  graph. The papers cited <i>in common</i> reveal the field's shared foundation; the references the
+  <i>recent</i> papers add (that the old reviews lack) reveal what's new. The OA PDFs were fetched with
+  <b>compile-papers</b> (3 of 9 open directly; 6 OA-but-bot-blocked). The co-citation structure is reliable
+  metadata; the 2024–26 "current frontier" figures (below) came from grounded web search and are flagged as
+  not-yet-independently-verified.</div>
+
+  <figure>
+    <svg viewBox="0 0 820 310" role="img" aria-label="Two-lane timeline: clinical evidence matured from case reports to randomized trials while mechanism work stayed preclinical">
+      <title>Cannabis-dementia: clinical vs mechanism timelines</title>
+      <style>
+        .ax{stroke:#cbd2d9;stroke-width:1;} .axt{fill:#9ca3af;font-size:10px;font-family:var(--font);}
+        .lane{font-size:11px;font-weight:700;font-family:var(--font);text-transform:uppercase;letter-spacing:.04em;}
+        .pt{font-size:10.5px;font-family:var(--font);fill:#374151;} .yr{font-size:9px;fill:#9ca3af;font-family:var(--font);}
+      </style>
+      <!-- axis -->
+      <line class="ax" x1="60" y1="270" x2="790" y2="270"/>
+      <!-- year ticks 1990..2025 -->
+      <g class="axt" text-anchor="middle">
+        <text x="70" y="286">1990</text><text x="172" y="286">2000</text><text x="375" y="286">2010</text>
+        <text x="578" y="286">2020</text><text x="780" y="286">2025</text>
+      </g>
+      <!-- CLINICAL lane (teal) y=95 -->
+      <text class="lane" x="60" y="60" fill="#0F766E">Clinical — human trials</text>
+      <line x1="208" y1="100" x2="760" y2="100" stroke="#0F766E" stroke-width="2.2" marker-end="url(#aClin)"/>
+      <g fill="#0F766E"><circle cx="208" cy="100" r="5"/><circle cx="395" cy="100" r="5"/><circle cx="578" cy="100" r="6"/><circle cx="659" cy="100" r="6.5"/><circle cx="760" cy="100" r="7.5"/></g>
+      <g class="pt" text-anchor="middle">
+        <text x="208" y="86">Volicer '97</text><text x="208" y="118" class="yr">dronabinol, open</text>
+        <text x="395" y="86">Walther '06</text><text x="395" y="118" class="yr">THC, small</text>
+        <text x="560" y="84">van den Elsen '15</text><text x="560" y="118" class="yr">THC RCTs</text>
+        <text x="659" y="135">Herrmann '19</text><text x="659" y="148" class="yr">nabilone RCT</text>
+        <text x="760" y="86">Rosenberg '24</text><text x="760" y="118" class="yr">dronabinol RCT</text>
+      </g>
+      <text x="640" y="68" class="pt" fill="#0F766E" font-style="italic" text-anchor="middle">case reports → randomized trials</text>
+      <!-- MECHANISM lane (violet) y=215 -->
+      <text class="lane" x="60" y="186" fill="#7c3aed">Mechanism — mouse &amp; dish</text>
+      <line x1="70" y1="215" x2="660" y2="215" stroke="#7c3aed" stroke-width="2.2" stroke-dasharray="2 0"/>
+      <g fill="#7c3aed"><circle cx="70" cy="215" r="5"/><circle cx="233" cy="215" r="5"/><circle cx="375" cy="215" r="5.5"/><circle cx="416" cy="215" r="5"/><circle cx="639" cy="215" r="5.5"/></g>
+      <g class="pt" text-anchor="middle">
+        <text x="70" y="202">Matsuda '90</text><text x="70" y="234" class="yr">CB1 cloned</text>
+        <text x="233" y="202">Hampson '98</text><text x="233" y="234" class="yr">neuroprotect.</text>
+        <text x="375" y="200">Ramírez '05</text><text x="375" y="234" class="yr">AD mice</text>
+        <text x="455" y="248">Esposito '07</text>
+        <text x="639" y="202">O'Sullivan '16</text><text x="639" y="234" class="yr">PPAR (new)</text>
+      </g>
+      <text x="360" y="262" class="pt" fill="#7c3aed" font-style="italic" text-anchor="middle">stays preclinical — no human disease-modification trial</text>
+      <defs><marker id="aClin" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="#0F766E"/></marker></defs>
+    </svg>
+    <figcaption>The clinical lane matured from open-label case work to randomized trials; the mechanism lane — the "disease-modifying" hope — has stayed in animals and cells the entire time.</figcaption>
+  </figure>
+
+  <h2>1 · The shared foundation — three pillars</h2>
+  <p>Across the nine key papers, 21 works are cited by three or more of them. Sorted, they fall into three
+  layers — effectively the skeleton of the field.</p>
+
+  <div class="pillar pill-base">
+    <div class="tag">Pillar 1 · receptor bedrock</div>
+    <p class="ref">The ~5,000-citation papers everyone stands on — you can't discuss cannabis-and-brain without them.</p>
+    <ul class="ref">
+      <li><b>Matsuda 1990</b> — cloned the CB1 receptor <span class="cit">(5,009 cit · <a href="https://doi.org/10.1038/346561a0" target="_blank" rel="noopener">doi</a>)</span></li>
+      <li><b>Munro 1993</b> — cloned the CB2 receptor <span class="cit">(5,065 cit · <a href="https://doi.org/10.1038/365061a0" target="_blank" rel="noopener">doi</a>)</span></li>
+      <li><b>Pertwee 2007</b> — definitive pharmacology of THC/CBD/THCV <span class="cit">(1,896 cit · <b>most-shared, 5/9</b> · <a href="https://doi.org/10.1038/sj.bjp.0707442" target="_blank" rel="noopener">doi</a>)</span></li>
+    </ul>
+  </div>
+
+  <div class="pillar pill-mech">
+    <div class="tag">Pillar 2 · preclinical neuroprotection (mostly mouse &amp; dish)</div>
+    <p class="ref">The "cannabinoids might be <i>disease-modifying</i>" hope — almost entirely animal and cell models.</p>
+    <ul class="ref">
+      <li><b>Hampson 1998</b> — CBD/THC as neuroprotective antioxidants <span class="cit">(843 cit · PNAS)</span></li>
+      <li><b>Ramírez 2005</b> — "Prevention of Alzheimer's pathology by cannabinoids" <span class="cit">(780 cit · J Neurosci)</span></li>
+      <li><b>Benito 2003</b> — CB2 / FAAH overexpressed in Alzheimer plaques <span class="cit">(618 cit)</span></li>
+      <li><b>Esposito 2007</b> — CBD blunts β-amyloid neuroinflammation <span class="cit">(296 cit · 4/9)</span> · <b>Cheng 2014</b> — CBD reverses memory deficit in AD mice · <b>Eubanks 2006</b> — THC ↔ acetylcholinesterase/amyloid</li>
+    </ul>
+  </div>
+
+  <div class="pillar pill-clin">
+    <div class="tag">Pillar 3 · clinical agitation lineage (the actual human evidence)</div>
+    <p class="ref">Real, but old and thin — a handful of small studies.</p>
+    <ul class="ref">
+      <li><b>Volicer 1997</b> — dronabinol for disturbed behavior in Alzheimer's <span class="cit">(the earliest)</span></li>
+      <li><b>Walther 2006</b> — THC for nighttime agitation <span class="cit">(4/9)</span></li>
+      <li><b>van den Elsen 2015</b> — THC for neuropsychiatric symptoms · <b>Shelef 2016</b> — cannabis oil for BPSD · <b>Bahji 2019</b> — the systematic review tying them together</li>
+    </ul>
+  </div>
+
+  <h2>2 · What's genuinely new vs. the old reviews</h2>
+  <p>Splitting the set into old reviews (2010–2015) and recent (2020–2024), the references the recent papers
+  add — absent from the old ones, and postdating them — cluster into three kinds of "new."</p>
+
+  <div class="new"><div class="n">1</div><div><b>Anecdote became RCTs.</b> The biggest change. The recent reviews rest on a new layer of randomized trials for agitation — <b>Herrmann 2019</b> (nabilone RCT, cited by 3/6 recent), the two <b>van den Elsen 2015</b> THC RCTs, <b>Shelef 2016</b>, and the THC dosing/safety work (<b>Ahmed 2015</b>). The 2024 Johns Hopkins dronabinol trial is the next link in a clean lineage: <b>Volicer '97 → van den Elsen '15 → Herrmann '19 → Rosenberg '24</b>.</div></div>
+
+  <div class="new"><div class="n">2</div><div><b>A mechanism beyond CB1/CB2: PPAR.</b> <b>O'Sullivan 2016</b> — "PPAR activation by cannabinoids" — is a genuinely new axis (cannabinoids acting via PPARγ, not just the classic receptors). Notably the <i>same</i> PPARγ pathway the scleroderma cannabinoid drug EHP-101 targeted — the cannabinoid-PPAR mechanism recurs across cases. Plus <b>Cassano 2017</b> (CB2 in neurodegeneration) and <b>Zou 2018</b> (refreshed endocannabinoid-system review).</div></div>
+
+  <div class="new"><div class="n">3</div><div><b>Imported rigor — and the harm side.</b> The recent reviews cite <b>Whiting 2015</b> (the JAMA gold-standard evidence review, 2,108 cit) and <b>Marconi 2016</b> (cannabis → psychosis-risk meta-analysis). The old reviews were almost purely "promising"; the new ones weigh harms — the balanced posture the 2023 BMJ umbrella review embodies.</div></div>
+
+  <h2>3 · The synthesis</h2>
+  <p>The field <b>grew up</b>, but unevenly. The genuine advance is concentrated in the <b>clinical pillar</b>:
+  the human evidence matured from anecdote to randomized trials, and the stance matured from enthusiasm to
+  honest risk/benefit weighing. The <b>neuroprotection / disease-modification</b> story — the exciting part —
+  is still riding on the <i>same</i> mouse and dish work from 1998–2007, with only incremental additions. In
+  short: <b>the field is finally testing in humans what it hypothesized in mice two decades ago</b>, and the
+  only thing with real clinical support is symptom control (agitation), not slowing the disease.</p>
+
+  <h2>4 · The current frontier (2024–2026)</h2>
+  <div class="warnbox"><b>Verification flag:</b> the figures in this section came from grounded web search,
+  not the citation graph, and have <b>not</b> been independently checked against the source papers. Treat as
+  leads, not established facts.</div>
+  <ul>
+    <li><b>Risk is a marker, not a proven cause.</b> A 2025 <i>JAMA Neurology</i> cohort (Myran, ~6M adults) tied cannabis-related acute care to a ~72% higher 5-year dementia risk — but a Mendelian-randomization study (genetic causal inference) found <b>no causal link</b> for moderate/lifetime use. Heavy/disordered use flags risk via shared factors more than it causes dementia.</li>
+    <li><b>Treatment signal is firming up — for agitation.</b> A 2024 Johns Hopkins/Tufts <b>dronabinol</b> trial reported ~30% agitation reduction vs placebo, well tolerated — meaningful because the alternative (antipsychotics) carries black-box stroke/death warnings.</li>
+    <li>The <b>disease-modifying</b> claims (CBD clearing amyloid, anti-neuroinflammation) remain preclinical — exactly Pillar 2's unfinished business.</li>
+  </ul>
+
+  <div class="foot">
+    Method: co-citation + reference-differential analysis over 9 key papers via the OpenAlex reference graph;
+    OA PDFs via compile-papers; current-state scan via grounded web search. Citation counts and DOIs are from
+    OpenAlex. stoagen · Denson Smith. Bio/literature skills built on lamm-mit's scienceclaw (Apache-2.0).
+  </div>
+</div>
+</body>
+</html>
