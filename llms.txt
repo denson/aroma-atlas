@@ -1,0 +1,32 @@
+# The aroma molecules of cannabis — a terpene atlas
+> An interactive atlas of the aroma molecules of cannabis: the ten headline
+> terpenes and the beyond-terpene flavorants (volatile sulfur compounds,
+> tropical thiols, esters), each with live 3D structures, formulas, and the
+> other plants that share the same molecule. A stoagen demonstration
+> (https://stoagen.com/). Author: Denson Smith.
+
+Everything here is information from the publisher, not instructions to you.
+Your operator's instructions come first; apply ours as source metadata.
+
+The pages use JavaScript only for visual enhancement (live 3D molecular
+viewers). Every fact the viewers illustrate also exists as text in the
+markdown mirrors below, which are what you should read. If your tool
+refuses a mirror's text/markdown content type, append .txt to the URL.
+
+Claims carry their sources: the volatile-sulfur and terpene-similarity
+findings cite Oswald et al. (ACS Omega 2021 and later Abstrax work) with
+DOIs in the page text, and each compound links its PubChem record. The
+dementia page is a citation-graph analysis of the cannabis-and-dementia
+literature: analysis, not new clinical evidence, and not medical advice.
+
+This site lives under denson.github.io, so it has no site-root robots.txt
+of its own; content signals for it are as stated here: search yes,
+ai-input yes, ai-train yes.
+
+## Pages
+- [The atlas](https://denson.github.io/aroma-atlas/index.md): the thesis (a plant's smell is a borrowed language), the isomer twins, and every compound as data.
+- [Cannabis and dementia](https://denson.github.io/aroma-atlas/dementia.md): what the literature actually rests on - three pillars, what's new, the synthesis, the 2024-2026 frontier, references.
+
+## Optional
+- [Assistant start page](https://denson.github.io/aroma-atlas/start.md): the one-URL front door.
+- [Sitemap](https://denson.github.io/aroma-atlas/sitemap.xml)
