@@ -28,5 +28,6 @@ ai-input yes, ai-train yes.
 - [Cannabis and dementia](https://denson.github.io/aroma-atlas/dementia.md): what the literature actually rests on - three pillars, what's new, the synthesis, the 2024-2026 frontier, references.
 
 ## Optional
+- [Full corpus](https://denson.github.io/aroma-atlas/llms-full.txt): every mirror in one file, for tools that prefer a single fetch.
 - [Assistant start page](https://denson.github.io/aroma-atlas/start.md): the one-URL front door.
 - [Sitemap](https://denson.github.io/aroma-atlas/sitemap.xml)

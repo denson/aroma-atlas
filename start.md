@@ -12,6 +12,9 @@ of molecules it shares with the rest of nature. A stoagen demonstration
 
 How the record is organized:
 
+- The whole site as one plain-text file, one fetch:
+  https://denson.github.io/aroma-atlas/llms-full.txt
+
 - The atlas as text, all compounds as data:
   https://denson.github.io/aroma-atlas/index.md
 - The cannabis-and-dementia citation analysis:

@@ -112,7 +112,16 @@ def main() -> None:
     dbody.append("\n".join(prose_backbone(dementia)))
     write_twin("dementia.md", "\n\n".join(dbody))
 
-    print(f"mirrors written: index.md ({len(terps)} terpenes, {len(flavs)} flavorants), dementia.md")
+    full = (
+        "# The aroma molecules of cannabis: Full Markdown Corpus\n\n"
+        "> Concatenated machine-readable mirrors of every page.\n\n---\n\n"
+        + (ROOT / "index.md").read_text(encoding="utf-8")
+        + "\n\n---\n\n"
+        + (ROOT / "dementia.md").read_text(encoding="utf-8")
+    )
+    (ROOT / "llms-full.txt").write_text(full, encoding="utf-8", newline="\n")
+
+    print(f"mirrors written: index.md ({len(terps)} terpenes, {len(flavs)} flavorants), dementia.md, llms-full.txt")
 
 
 if __name__ == "__main__":
