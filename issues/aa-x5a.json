@@ -1,0 +1,14 @@
+{
+  "assignee": "",
+  "blocked_by": [],
+  "blocks": [],
+  "created": "2026-08-22T04:43:47Z",
+  "description": "FOR: whichever seat works aroma-atlas. Filed by Polybius the Stoagen 2026-08-22. First ticket in this store (prefix aa). WHAT THIS IS: https://denson.github.io/aroma-atlas/ - the cannabis aroma-molecule atlas (10 terpenes, 6 flavorants, live 3D PubChem structures) plus the cannabis-and-dementia citation analysis (dementia.html). A Stoagen demonstration; author Denson Smith. Legacy GitHub Pages from main root: files at the repo root serve directly, no CI. THE MACHINE LAYER (added 2026-08-21): gen_mirrors.py derives index.md and dementia.md (plus .txt twins) from the same TERPS/FLAVS data the 3D cards render and from each page's prose, so mirrors cannot drift; it also writes llms-full.txt and full_site.txt. llms.txt, start.md, sitemap.xml are static. Both pages carry the copy box (Tell me about this site: .../full_site.txt) and the descriptive body strip. RULE: after ANY edit to index.html or dementia.html, run python gen_mirrors.py and commit the regenerated files; JavaScript is enhancement only and everything the viewers show must exist as text in the mirrors. The site-wide laws are in denson/stoagen-com docs/building-agent-friendly-sites.md. OPEN WORK: GitHub issue #1 in this repo (second atlas page: the terpenes cannabis does not speak) - needs a full source pass before publishing. HANDOFF: bw prime at session start; push tickets with git push origin beadwork.",
+  "id": "aa-x5a",
+  "labels": [],
+  "priority": 2,
+  "status": "open",
+  "title": "[START HERE] Aroma atlas: an interactive page carrying the Stoagen machine layer",
+  "type": "task",
+  "updated_at": "2026-08-22T04:43:47Z"
+}
