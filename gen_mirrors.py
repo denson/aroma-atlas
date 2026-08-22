@@ -120,6 +120,7 @@ def main() -> None:
         + (ROOT / "dementia.md").read_text(encoding="utf-8")
     )
     (ROOT / "llms-full.txt").write_text(full, encoding="utf-8", newline="\n")
+    (ROOT / "full_site.txt").write_text(full, encoding="utf-8", newline="\n")
 
     print(f"mirrors written: index.md ({len(terps)} terpenes, {len(flavs)} flavorants), dementia.md, llms-full.txt")
 
