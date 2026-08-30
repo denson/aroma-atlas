@@ -10,11 +10,15 @@
     {
       "text": "Codex branch aa-27x/responsive-smell-path is now at 34f8d73. The implementation evolved from the original SVG: it uses CSS-only \u003cpicture\u003e selection with three project-local bitmap variants at mobile \u003c=560px, tablet \u003c=900px, and desktop fallback for a carvone receptor/percept illustration, plus a second three-variant configural-odor illustration (ethyl isobutyrate + ethyl maltol at the studied 30:70 ratio -\u003e pineapple-like percept). Both figures have live alt/caption text; python gen_mirrors.py was run after each index.html edit. Browser checks at 360, 768, and 1100px selected the intended assets with no horizontal overflow. The branch remains based on the older main noted in this ticket: do not merge raw; splice/rebase onto current main and rerun the current mirror generator before landing.",
       "timestamp": "2026-08-30T19:33:28Z"
+    },
+    {
+      "text": "Maintainer-side review checklist, updated for the evolved implementation (bitmaps, two figures): (1) SCOPE — the task authorized one figure for the smell-path paragraph; the second figure (configural odor: ethyl isobutyrate + ethyl maltol 30:70 -\u003e pineapple-like percept) names compounds and cites a studied ratio, so before landing, verify the study behind 30:70 and confirm the figure attaches to the configural-perception paragraph (flavorants section), not the smell-path one. (2) BITMAPS — check total added page weight for 6 assets, sharpness at 2x DPR, and that backgrounds sit correctly on the cream paper (transparent or #f8eed9-matched); house style is flat editorial. (3) TRIPWIRE AMENDED — effective diff may now touch index.html + regenerated mirrors + the new project-local image assets, nothing else. (4) Splice/rebase onto current main and rerun the CURRENT gen_mirrors.py; confirm both captions and alt text reach the mirrors. (5) Verify no third-party requests were introduced.",
+      "timestamp": "2026-08-30T19:37:33Z"
     }
   ],
   "priority": 2,
   "status": "in_progress",
   "title": "Land the responsive smell-path diagram (Codex branch aa-27x/responsive-smell-path)",
   "type": "task",
-  "updated_at": "2026-08-30T19:33:28Z"
+  "updated_at": "2026-08-30T19:37:33Z"
 }
