@@ -6,6 +6,12 @@
   "description": "Codex is adding a responsive diagram (jar -\u003e receptor -\u003e brain, two layouts around the 560px breakpoint) to the 'Smell was an effect on your brain all along' section and will open a PR when done. Branch already pushed; tip 6b8a2c7, based at c049098 = 3 commits behind main, and its mirror files were regenerated with the pre-fix gen_mirrors.py (would revert the appendix + act-two mirror text). DO NOT merge raw. On PR: take only the index.html figure/CSS hunk, splice onto current main, run python gen_mirrors.py, verify BOTH viewport variants in a real narrow viewport, confirm the molhint caption reached the mirrors, then land. Effective diff must touch index.html + regenerated mirrors only.",
   "id": "aa-m2s",
   "labels": [],
+  "comments": [
+    {
+      "text": "Codex branch aa-27x/responsive-smell-path is now at 34f8d73. The implementation evolved from the original SVG: it uses CSS-only \u003cpicture\u003e selection with three project-local bitmap variants at mobile \u003c=560px, tablet \u003c=900px, and desktop fallback for a carvone receptor/percept illustration, plus a second three-variant configural-odor illustration (ethyl isobutyrate + ethyl maltol at the studied 30:70 ratio -\u003e pineapple-like percept). Both figures have live alt/caption text; python gen_mirrors.py was run after each index.html edit. Browser checks at 360, 768, and 1100px selected the intended assets with no horizontal overflow. The branch remains based on the older main noted in this ticket: do not merge raw; splice/rebase onto current main and rerun the current mirror generator before landing.",
+      "timestamp": "2026-08-30T19:33:28Z"
+    }
+  ],
   "priority": 2,
   "status": "in_progress",
   "title": "Land the responsive smell-path diagram (Codex branch aa-27x/responsive-smell-path)",
