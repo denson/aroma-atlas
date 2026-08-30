@@ -48,12 +48,20 @@ def prose_backbone(source: str) -> list[str]:
     # lands in the mirror as one enormous bullet.
     source = re.sub(r"<style>.*?</style>", "", source, flags=re.S)
     source = re.sub(r"<script\b.*?</script>", "", source, flags=re.S)
+    # The callout boxes are divs, so without this rewrite their text (the
+    # worked-example frame, the how-this-was-made notes, the star and warning
+    # boxes, the interaction rows) would exist only on the page - a violation
+    # of the mirror law. Non-greedy close is fine: a nested inner div's close
+    # ends the capture after the inner content is already included.
+    source = re.sub(
+        r'<div class="(?:frame|note|star|warnbox|xform)"[^>]*>(.*?)</div>',
+        lambda m: "<p>" + m.group(1) + "</p>", source, flags=re.S)
     lines = []
-    for tag, content in re.findall(r"<(h1|h2|h3|p|li)\b[^>]*>(.*?)</\1>", source, re.S):
+    for tag, content in re.findall(r"<(h1|h2|h3|h4|p|li)\b[^>]*>(.*?)</\1>", source, re.S):
         text = strip_tags(content)
         if not text:
             continue
-        prefix = {"h1": "# ", "h2": "## ", "h3": "### ", "li": "- ", "p": ""}[tag]
+        prefix = {"h1": "# ", "h2": "## ", "h3": "### ", "h4": "#### ", "li": "- ", "p": ""}[tag]
         lines.append(prefix + text)
     return lines
 
