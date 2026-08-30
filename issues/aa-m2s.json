@@ -1,0 +1,14 @@
+{
+  "assignee": "",
+  "blocked_by": [],
+  "blocks": [],
+  "created": "2026-08-30T19:19:22Z",
+  "description": "Codex is adding a responsive diagram (jar -\u003e receptor -\u003e brain, two layouts around the 560px breakpoint) to the 'Smell was an effect on your brain all along' section and will open a PR when done. Branch already pushed; tip 6b8a2c7, based at c049098 = 3 commits behind main, and its mirror files were regenerated with the pre-fix gen_mirrors.py (would revert the appendix + act-two mirror text). DO NOT merge raw. On PR: take only the index.html figure/CSS hunk, splice onto current main, run python gen_mirrors.py, verify BOTH viewport variants in a real narrow viewport, confirm the molhint caption reached the mirrors, then land. Effective diff must touch index.html + regenerated mirrors only.",
+  "id": "aa-m2s",
+  "labels": [],
+  "priority": 2,
+  "status": "open",
+  "title": "Land the responsive smell-path diagram (Codex branch aa-27x/responsive-smell-path)",
+  "type": "task",
+  "updated_at": "2026-08-30T19:19:22Z"
+}
