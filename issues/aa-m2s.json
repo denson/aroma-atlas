@@ -14,11 +14,15 @@
     {
       "text": "Maintainer-side review checklist, updated for the evolved implementation (bitmaps, two figures): (1) SCOPE — the task authorized one figure for the smell-path paragraph; the second figure (configural odor: ethyl isobutyrate + ethyl maltol 30:70 -\u003e pineapple-like percept) names compounds and cites a studied ratio, so before landing, verify the study behind 30:70 and confirm the figure attaches to the configural-perception paragraph (flavorants section), not the smell-path one. (2) BITMAPS — check total added page weight for 6 assets, sharpness at 2x DPR, and that backgrounds sit correctly on the cream paper (transparent or #f8eed9-matched); house style is flat editorial. (3) TRIPWIRE AMENDED — effective diff may now touch index.html + regenerated mirrors + the new project-local image assets, nothing else. (4) Splice/rebase onto current main and rerun the CURRENT gen_mirrors.py; confirm both captions and alt text reach the mirrors. (5) Verify no third-party requests were introduced.",
       "timestamp": "2026-08-30T19:37:33Z"
+    },
+    {
+      "text": "MAINTAINER REVIEW of 34f8d73 (full review relayed via Denson). Verdict: strong design direction, not landable yet. CITATIONS VERIFIED: Pike/Enns/Hornung 1988 Chem Senses 13(2):307 supports carvone both-qualities claim (humans) - but is not cited on-page, add it. JEB 10.1242/jeb.242274 is Coureaud, Thomas-Danguin, Sandoz \u0026 Wilson 2022 (review) - page cites it as 'Thomas-Danguin et al.' = wrong first author; fix to Coureaud et al. 2022, ideally also credit Le Berre et al. 2008 as the original EI/EM 30:70 pineapple finding (humans). IMAGE ERRORS (must fix): (1) smell-path glyphs are unrelated shapes while the annotation says mirror-image - carvone enantiomers must be mirrored glyphs; (2) configural image shows the two molecules merging into a NEW maroon molecule that docks one receptor = illustrates chemical combination, but configural perception is neural - molecules must dock separately, the BRAIN renders the new percept. STRUCTURE: do not edit the approved pivot paragraph (restore 'spearmint or skunk' wording and the aromatherapy parenthetical position - it is currently orphaned after the second figure); the configural h3+figure belongs in the flavorants section next to the existing configural-perception paragraph, not in the hinge. WEIGHT: 9MB PNG is too heavy; recommendation is redraw as inline SVG using these bitmaps as the design spec (house precedent = dementia timeline SVG; ~10KB, crisp at all DPR, editable); if bitmaps kept: WebP, total \u003c500KB, and per-source width/height (mobile asset is 864x1821 vs declared 1536x1024 = layout shift). TRANSPLANT: do not rebase; re-implement on a fresh branch off current main incorporating this review; rerun current gen_mirrors.py (base's generator predates the callout/b-boundary fixes). Ticket stays open.",
+      "timestamp": "2026-08-30T20:08:06Z"
     }
   ],
   "priority": 2,
   "status": "in_progress",
   "title": "Land the responsive smell-path diagram (Codex branch aa-27x/responsive-smell-path)",
   "type": "task",
-  "updated_at": "2026-08-30T19:37:33Z"
+  "updated_at": "2026-08-30T20:08:06Z"
 }
