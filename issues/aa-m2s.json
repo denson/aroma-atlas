@@ -1,5 +1,5 @@
 {
-  "assignee": "",
+  "assignee": "Denson Smith",
   "blocked_by": [],
   "blocks": [],
   "created": "2026-08-30T19:19:22Z",
@@ -7,8 +7,8 @@
   "id": "aa-m2s",
   "labels": [],
   "priority": 2,
-  "status": "open",
+  "status": "in_progress",
   "title": "Land the responsive smell-path diagram (Codex branch aa-27x/responsive-smell-path)",
   "type": "task",
-  "updated_at": "2026-08-30T19:19:22Z"
+  "updated_at": "2026-08-30T19:33:28Z"
 }
