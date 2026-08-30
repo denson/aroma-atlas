@@ -44,8 +44,12 @@ def parse_entries(source: str, const_name: str) -> list[dict[str, str]]:
 
 def prose_backbone(source: str) -> list[str]:
     """Headings and paragraphs in document order, as markdown lines."""
+    # Style and script blocks are not prose; without this the page CSS
+    # lands in the mirror as one enormous bullet.
+    source = re.sub(r"<style>.*?</style>", "", source, flags=re.S)
+    source = re.sub(r"<script\b.*?</script>", "", source, flags=re.S)
     lines = []
-    for tag, content in re.findall(r"<(h1|h2|h3|p|li)[^>]*>(.*?)</\1>", source, re.S):
+    for tag, content in re.findall(r"<(h1|h2|h3|p|li)\b[^>]*>(.*?)</\1>", source, re.S):
         text = strip_tags(content)
         if not text:
             continue
@@ -109,6 +113,14 @@ def main() -> None:
     body.extend(compound_section("Beyond terpenes: the flavorants, as data", flavs))
     body.extend(compound_section("The mirror pair (enantiomers), as data", chiral))
     body.extend(compound_section("The cannabinoid isomers, as data", cannab))
+    # Hand-authored back matter: appendix.md reaches the machine layer only,
+    # never the page. Sourced detail and dated legal caveats live there.
+    appendix_path = ROOT / "appendix.md"
+    if appendix_path.is_file():
+        body.append("## Appendix: notes for readers' AI assistants (not on the page)")
+        body.append("")
+        body.append(appendix_path.read_text(encoding="utf-8").strip())
+        body.append("")
     write_twin("index.md", "\n\n".join([body[0]] + ["\n".join(body[1:])]))
 
     dbody = [preamble(f"{BASE}/dementia.html",
