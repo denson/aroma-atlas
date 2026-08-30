@@ -7,40 +7,48 @@
 <title>Cannabis &amp; Dementia — what the literature rests on</title>
 <link rel="alternate" type="text/markdown" href="dementia.md" title="Markdown version">
 <style>
+  /* Typography and palette match colorado-medical-cannabis.org (same desk).
+     Both font families are SIL OFL 1.1; license texts in ./fonts/licenses/. */
+  @font-face{font-family:"Newsreader";font-style:normal;font-weight:200 800;font-display:swap;
+    src:local("Newsreader"),url("fonts/newsreader-latin-variable.woff2") format("woff2");}
+  @font-face{font-family:"Atkinson Hyperlegible Next";font-style:normal;font-weight:200 800;font-display:swap;
+    src:local("Atkinson Hyperlegible Next"),url("fonts/atkinson-hyperlegible-next-latin-variable.woff2") format("woff2");}
   :root{
-    --ink:#1f2937; --muted:#6b7280; --line:#e2e6eb; --accent:#0e7490;
+    --paper:#f8eed9; --ink:#33232d; --muted:rgba(51,35,45,.62); --line:rgba(51,35,45,.24);
+    --accent:#5c243f; --evergreen:#21423b; --ochre:#a27728;
     --clin:#0F766E; --clin-soft:#E6F4F1; --mech:#7c3aed; --mech-soft:#F1ECFD;
     --warn:#C2410C;
-    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --font:"Newsreader",Georgia,"Times New Roman",serif;
+    --ui:"Atkinson Hyperlegible Next","Segoe UI",Arial,sans-serif;
   }
   *{box-sizing:border-box;}
-  body{margin:0;background:#f4f5f7;color:var(--ink);font-family:var(--font);line-height:1.65;}
-  .sheet{max-width:830px;margin:26px auto;background:#fff;border:1px solid var(--line);border-radius:14px;
-         padding:40px 48px 56px;box-shadow:0 1px 3px rgba(0,0,0,.04);}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:18px;line-height:1.65;}
+  .sheet{max-width:830px;margin:26px auto;background:transparent;border:none;border-radius:0;
+         padding:40px 48px 56px;box-shadow:none;}
   @media(max-width:560px){.sheet{padding:24px 20px;margin:10px;}}
-  h1{font-size:27px;line-height:1.2;margin:0 0 6px;letter-spacing:-.015em;}
-  .dek{color:var(--muted);font-size:15px;margin:0 0 4px;}
-  .by{color:var(--muted);font-size:12.5px;margin:0;}
-  h2{font-size:20px;margin:34px 0 8px;letter-spacing:-.01em;}
-  h3{font-size:15px;margin:22px 0 4px;}
+  h1{font-size:38px;line-height:1.08;margin:0 0 8px;letter-spacing:-.025em;}
+  .dek{color:var(--muted);font-size:19px;margin:0 0 4px;}
+  .by{color:var(--muted);font-family:var(--ui);font-size:12.5px;margin:0;}
+  h2{font-size:26px;margin:34px 0 8px;letter-spacing:-.015em;line-height:1.1;}
+  h3{font-size:19px;margin:22px 0 4px;}
   p{margin:11px 0;}
-  a{color:var(--accent);text-decoration:none;border-bottom:1px solid #bae6fd;}
-  a:hover{border-bottom-color:var(--accent);}
-  .note{background:#fafbfc;border:1px solid var(--line);border-left:3px solid var(--muted);
-        border-radius:0 8px 8px 0;padding:11px 15px;font-size:13.5px;color:#374151;margin:16px 0;}
-  .pillar{border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:12px 0;}
-  .pillar .tag{font-size:11px;text-transform:uppercase;letter-spacing:.05em;font-weight:700;}
+  a{color:var(--accent);text-decoration:underline;text-underline-offset:.18em;}
+  a:hover{color:var(--evergreen);}
+  .note{background:rgba(255,255,255,.3);border:1px solid var(--line);border-left:4px solid var(--ochre);
+        border-radius:0 8px 8px 0;padding:11px 15px;font-size:14.5px;color:var(--ink);margin:16px 0;}
+  .pillar{border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:12px 0;background:rgba(255,255,255,.3);}
+  .pillar .tag{font-family:var(--ui);font-size:11px;text-transform:uppercase;letter-spacing:.05em;font-weight:700;}
   .pill-clin{border-left:4px solid var(--clin);} .pill-clin .tag{color:var(--clin);}
   .pill-mech{border-left:4px solid var(--mech);} .pill-mech .tag{color:var(--mech);}
-  .pill-base{border-left:4px solid #475569;} .pill-base .tag{color:#475569;}
-  ul{margin:8px 0;padding-left:20px;} li{margin:5px 0;font-size:14px;}
-  .ref{font-size:13.5px;} .ref b{color:#111827;} .cit{color:var(--muted);font-size:12px;}
+  .pill-base{border-left:4px solid #54424c;} .pill-base .tag{color:#54424c;}
+  ul{margin:8px 0;padding-left:20px;} li{margin:5px 0;font-size:15px;}
+  .ref{font-size:14.5px;} .ref b{color:var(--ink);} .cit{color:var(--muted);font-size:12.5px;}
   .new{display:flex;gap:12px;margin:12px 0;} .new .n{font-size:22px;font-weight:700;color:var(--accent);min-width:26px;}
-  .warnbox{background:#fdf3ee;border:1px solid #f3c9b3;border-left:3px solid var(--warn);border-radius:0 8px 8px 0;
-           padding:11px 15px;font-size:13.5px;margin:16px 0;}
-  figure{margin:18px 0;} figcaption{font-size:12.5px;color:var(--muted);text-align:center;margin-top:6px;}
+  .warnbox{background:rgba(255,255,255,.3);border:1px solid var(--line);border-left:3px solid var(--warn);border-radius:0 8px 8px 0;
+           padding:11px 15px;font-size:14.5px;margin:16px 0;}
+  figure{margin:18px 0;} figcaption{font-family:var(--ui);font-size:12.5px;color:var(--muted);text-align:center;margin-top:6px;}
   svg{display:block;width:100%;height:auto;}
-  .foot{margin-top:30px;border-top:1px solid var(--line);padding-top:14px;color:var(--muted);font-size:12px;}
+  .foot{margin-top:30px;border-top:1px solid var(--line);padding-top:14px;color:var(--muted);font-family:var(--ui);font-size:12px;}
 </style>
 </head>
 <body>
@@ -65,9 +73,9 @@
       <title>Cannabis-dementia: clinical vs mechanism timelines</title>
 <link rel="alternate" type="text/markdown" href="dementia.md" title="Markdown version">
       <style>
-        .ax{stroke:#cbd2d9;stroke-width:1;} .axt{fill:#9ca3af;font-size:10px;font-family:var(--font);}
-        .lane{font-size:11px;font-weight:700;font-family:var(--font);text-transform:uppercase;letter-spacing:.04em;}
-        .pt{font-size:10.5px;font-family:var(--font);fill:#374151;} .yr{font-size:9px;fill:#9ca3af;font-family:var(--font);}
+        .ax{stroke:rgba(51,35,45,.3);stroke-width:1;} .axt{fill:#6f5d66;font-size:10px;font-family:var(--ui);}
+        .lane{font-size:11px;font-weight:700;font-family:var(--ui);text-transform:uppercase;letter-spacing:.04em;}
+        .pt{font-size:10.5px;font-family:var(--ui);fill:#33232d;} .yr{font-size:9px;fill:#6f5d66;font-family:var(--ui);}
       </style>
       <!-- axis -->
       <line class="ax" x1="60" y1="270" x2="790" y2="270"/>
@@ -199,6 +207,7 @@
     Method: co-citation + reference-differential analysis over 9 key papers via the OpenAlex reference graph;
     OA PDFs via compile-papers; current-state scan via grounded web search. Citation counts and DOIs are from
     OpenAlex. stoagen · Denson Smith. Bio/literature skills built on lamm-mit's scienceclaw (Apache-2.0).
+    From the same desk: <a href="https://colorado-medical-cannabis.org/">colorado-medical-cannabis.org</a>.
   </div>
 </div>
 
