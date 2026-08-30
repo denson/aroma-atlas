@@ -94,6 +94,20 @@
   <p>The two heavier ones are likewise twins: <b>β-caryophyllene</b> (peppery) and <b>humulene</b> (hoppy) are both
   <code>C₁₅H₂₄</code> — humulene is α-caryophyllene, a structural isomer. One of them, as you'll see, is also a drug.</p>
 
+  <h3>The mirror twist: same atoms, same bonds, opposite hands</h3>
+  <p>It goes one step further. Two molecules can share the formula <i>and</i> the entire bond map and still differ
+  the way your left hand differs from your right: mirror images that no rotation can superimpose (chemists call them
+  <b>enantiomers</b>). Your nose tells them apart, because smell receptors are proteins, and proteins are themselves
+  built one-handed — a mirror-image molecule docks into them differently. The textbook pair is <b>carvone</b>,
+  <code>C₁₀H₁₄O</code>: the R hand is the smell of <b>spearmint</b>; its mirror image, the S hand, is <b>caraway and
+  dill</b>. Rotate them below — every bond length and angle matches, and they will never line up.</p>
+  <div id="chiralgrid" class="grid"></div>
+  <p>Limonene has hands too: the bright orange-peel citrus people mean by "limonene" is the R hand,
+  <a href="https://pubchem.ncbi.nlm.nih.gov/compound/440917">(+)-limonene</a> — the form the Johns Hopkins anxiety
+  trial dosed — while its mirror, <a href="https://pubchem.ncbi.nlm.nih.gov/compound/439250">(−)-limonene</a>, reads
+  harsher: lemon-pine edging toward turpentine. (The atlas card below uses PubChem's hand-unspecified limonene
+  record; the citrus description belongs to the R hand.)</p>
+
   <h2>The atlas — the terpenes</h2>
   <p class="molhint">Each card carries the live PubChem 3D structure — drag to rotate, scroll to zoom. Use the controls to change representation or spin them all.</p>
   <div class="ctl" id="ctl">
@@ -222,6 +236,10 @@ const FLAVS = [
   {klass:'Indole & skatole — "funk"', n:"Skatole", cid:6736, f:"C₉H₉N", mw:"131.17", aroma:"savory · dank · umami", col:"#7c3aed", src:"3-methylindole — trace = mouth-watering umami funk (GMO, Garlic Cookies); excess tips to fecal/musty. It also amplifies the gassy thiols."},
   {klass:'Volatile fatty acids — "cheese"', n:"Octanoic acid", cid:379, f:"C₈H₁₆O₂", mw:"144.21", aroma:"sweaty · dairy · sharp", col:"#8a6d52", src:"With decanoic acid — the savory, cheese-rind nuance in some phenotypes."}
 ];
+const CHIRAL = [
+  {n:"(R)-(−)-carvone", cid:439570, f:"C₁₀H₁₄O", mw:"150.22", aroma:"Spearmint", col:"herbal", src:"The main aroma of spearmint oil. The mirror image of the molecule beside it."},
+  {n:"(S)-(+)-carvone", cid:16724, f:"C₁₀H₁₄O", mw:"150.22", aroma:"Caraway, dill", col:"earthy", src:"The smell of caraway seed and dill. Same atoms, same bonds as spearmint's carvone — opposite hand."}
+];
 const COLORS = {earthy:"#a9742f",citrus:"#E0A400",pine:"#3f9d52",floral:"#9b5cc9",pepper:"#c2410c",hoppy:"#b8860b",herbal:"#4aa39a",woody:"#8a6d52"};
 const STYLES = { ballstick:{stick:{radius:0.13},sphere:{scale:0.22}}, stick:{stick:{radius:0.15}}, sphere:{sphere:{}}, line:{line:{}} };
 let curStyle='ballstick', spinning=false;
@@ -286,10 +304,12 @@ function initViewers(){
     return;
   }
   const all = [];
+  CHIRAL.forEach((t,i)=> all.push({id:'chiral'+i, cid:t.cid}));
   TERPS.forEach((t,i)=> all.push({id:'mol'+i, cid:t.cid}));
   FLAVS.forEach((t,i)=> all.push({id:'flav'+i, cid:t.cid}));
   all.forEach((m,i)=>{ const el = document.getElementById(m.id); if(el) setTimeout(()=>loadMol(el, m.cid), i*30); });
 }
+renderGrid(CHIRAL, document.getElementById('chiralgrid'), 'chiral');
 renderGrid(TERPS, document.getElementById('terpgrid'), 'mol');
 renderGrid(FLAVS, document.getElementById('flavgrid'), 'flav');
 if (document.readyState === 'complete') initViewers();

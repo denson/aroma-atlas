@@ -18,7 +18,8 @@ from pathlib import Path
 # Every CID shown on index.html (terpenes + flavorants). Keep in sync
 # with the TERPS and FLAVS arrays there.
 CIDS = [31253, 22311, 6654, 14896, 6549, 5281515, 5281520, 11463,
-        6434062, 5284507, 146586, 521348, 31265, 8635, 6736, 379]
+        6434062, 5284507, 146586, 521348, 31265, 8635, 6736, 379,
+        439570, 16724]  # carvone enantiomers (CHIRAL array)
 
 BASE = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/{cid}/SDF?record_type={rt}"
 OUT = Path(__file__).resolve().parent / "sdf"
@@ -40,14 +41,30 @@ def fetch(cid: int) -> str:
     raise RuntimeError(f"no usable SDF for CID {cid}")
 
 
+def normalized(text: str) -> str:
+    """SDF content minus the volatile parts of PubChem's export.
+
+    Line 2 is an OEChem stamp carrying the export timestamp, so a raw
+    comparison reports every re-download as changed. Mask it (and line
+    endings) so CHANGED means the structure record actually changed.
+    """
+    lines = text.replace("\r\n", "\n").split("\n")
+    if len(lines) > 1 and "OEChem" in lines[1]:
+        lines[1] = "  -OEChem-"
+    return "\n".join(lines)
+
+
 def main() -> None:
     OUT.mkdir(exist_ok=True)
     for cid in CIDS:
         text = fetch(cid)
         path = OUT / f"{cid}.sdf"
         old = path.read_text(encoding="utf-8") if path.is_file() else None
-        path.write_text(text, encoding="utf-8")
-        print(f"{path.name}: {len(text)} bytes" + ("" if old == text or old is None else " (CHANGED)"))
+        if old is not None and normalized(old) == normalized(text):
+            print(f"{path.name}: unchanged")
+        else:
+            path.write_text(text, encoding="utf-8")
+            print(f"{path.name}: {len(text)} bytes" + (" (CHANGED)" if old is not None else " (new)"))
         time.sleep(1)
     print(f"done: {len(CIDS)} structures in {OUT}")
 
