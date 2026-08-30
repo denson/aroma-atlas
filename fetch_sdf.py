@@ -19,7 +19,8 @@ from pathlib import Path
 # with the TERPS and FLAVS arrays there.
 CIDS = [31253, 22311, 6654, 14896, 6549, 5281515, 5281520, 11463,
         6434062, 5284507, 146586, 521348, 31265, 8635, 6736, 379,
-        439570, 16724]  # carvone enantiomers (CHIRAL array)
+        439570, 16724,  # carvone enantiomers (CHIRAL array)
+        16078, 644019, 638026]  # THC, CBD, delta-8 (CANNAB array)
 
 BASE = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/{cid}/SDF?record_type={rt}"
 OUT = Path(__file__).resolve().parent / "sdf"

@@ -108,6 +108,31 @@
   harsher: lemon-pine edging toward turpentine. (The atlas card below uses PubChem's hand-unspecified limonene
   record; the citrus description belongs to the R hand.)</p>
 
+  <h2>Here the subject changes: from smell to effect</h2>
+  <p><b>Everything above was about the nose</b> — same atoms, different shape, different smell, demonstrated on
+  molecules the whole plant kingdom shares. That concept block ends here. From this point on the atlas is about
+  <b>cannabis's own compounds</b>, and about a claim with much more riding on it and substantial evidence behind
+  it: <b>shape doesn't just decide how a molecule smells — it decides what the molecule does to your body.</b>
+  Receptors are proteins, and proteins read shape. Cannabis supplies the textbook case:
+  <a href="https://pubchem.ncbi.nlm.nih.gov/compound/16078">Δ⁹-THC</a>,
+  <a href="https://pubchem.ncbi.nlm.nih.gov/compound/644019">CBD</a>, and
+  <a href="https://pubchem.ncbi.nlm.nih.gov/compound/638026">Δ⁸-THC</a> all share one formula,
+  <code>C₂₁H₃₀O₂</code>, 314.5 g/mol — the identical fifty-three atoms — yet THC's shape fits the brain's CB1
+  receptor and intoxicates, CBD's shape barely engages CB1 and doesn't, and moving a single double bond turns
+  Δ⁹ into Δ⁸, with a noticeably milder high. Rotate all three:</p>
+  <div id="cannabgrid" class="grid"></div>
+  <p>And nothing in a jar arrives as one molecule. What reaches you is a <b>blend</b> — cannabinoids setting the
+  core effect, terpenes and trace flavorants riding along — and the blend differs jar to jar. Here's what should
+  not be controversial: <b>co-administered biologically active compounds changing each other's overall effect is
+  ordinary pharmacology</b>, demonstrated every day outside cannabis. Alcohol taken alongside opioid painkillers
+  potentiates them — sedation and suppressed breathing — to the point of a boxed warning on the opioid label. A
+  glass of orange juice taken with Allegra cuts the antihistamine's absorption so sharply that the label tells you
+  not to take it with fruit juice. Interaction between active compounds is the rule, not the exception. So the open
+  question for cannabis was never <i>whether</i> an entourage effect can exist. It is <i>which</i> combinations do
+  what, at the doses a flower actually delivers — shaping what a product does for a medical condition and what the
+  high feels like recreationally. Where that evidence stands — what is proven, what is still promise, and the one
+  pairing with human RCT support — is laid out honestly in the entourage section below.</p>
+
   <h2>The atlas — the terpenes</h2>
   <p class="molhint">Each card carries the live PubChem 3D structure — drag to rotate, scroll to zoom. Use the controls to change representation or spin them all.</p>
   <div class="ctl" id="ctl">
@@ -240,6 +265,11 @@ const CHIRAL = [
   {n:"(R)-(−)-carvone", cid:439570, f:"C₁₀H₁₄O", mw:"150.22", aroma:"Spearmint", col:"herbal", src:"The main aroma of spearmint oil. The mirror image of the molecule beside it."},
   {n:"(S)-(+)-carvone", cid:16724, f:"C₁₀H₁₄O", mw:"150.22", aroma:"Caraway, dill", col:"earthy", src:"The smell of caraway seed and dill. Same atoms, same bonds as spearmint's carvone — opposite hand."}
 ];
+const CANNAB = [
+  {n:"Δ⁹-THC", cid:16078, f:"C₂₁H₃₀O₂", mw:"314.5", aroma:"Fits CB1 · the intoxication", col:"pepper", src:"The main psychoactive cannabinoid: a partial agonist at the brain's CB1 receptor. Its shape is the high."},
+  {n:"CBD", cid:644019, f:"C₂₁H₃₀O₂", mw:"314.5", aroma:"Barely engages CB1 · non-intoxicating", col:"pine", src:"Same formula as THC, different shape: low CB1 affinity, no high — the whole difference is arrangement."},
+  {n:"Δ⁸-THC", cid:638026, f:"C₂₁H₃₀O₂", mw:"314.5", aroma:"Fits CB1 weaker · milder high", col:"hoppy", src:"One double bond moved relative to Δ⁹ — same formula, noticeably weaker intoxication."}
+];
 const COLORS = {earthy:"#a9742f",citrus:"#E0A400",pine:"#3f9d52",floral:"#9b5cc9",pepper:"#c2410c",hoppy:"#b8860b",herbal:"#4aa39a",woody:"#8a6d52"};
 const STYLES = { ballstick:{stick:{radius:0.13},sphere:{scale:0.22}}, stick:{stick:{radius:0.15}}, sphere:{sphere:{}}, line:{line:{}} };
 let curStyle='ballstick', spinning=false;
@@ -305,11 +335,13 @@ function initViewers(){
   }
   const all = [];
   CHIRAL.forEach((t,i)=> all.push({id:'chiral'+i, cid:t.cid}));
+  CANNAB.forEach((t,i)=> all.push({id:'cannab'+i, cid:t.cid}));
   TERPS.forEach((t,i)=> all.push({id:'mol'+i, cid:t.cid}));
   FLAVS.forEach((t,i)=> all.push({id:'flav'+i, cid:t.cid}));
   all.forEach((m,i)=>{ const el = document.getElementById(m.id); if(el) setTimeout(()=>loadMol(el, m.cid), i*30); });
 }
 renderGrid(CHIRAL, document.getElementById('chiralgrid'), 'chiral');
+renderGrid(CANNAB, document.getElementById('cannabgrid'), 'cannab');
 renderGrid(TERPS, document.getElementById('terpgrid'), 'mol');
 renderGrid(FLAVS, document.getElementById('flavgrid'), 'flav');
 if (document.readyState === 'complete') initViewers();

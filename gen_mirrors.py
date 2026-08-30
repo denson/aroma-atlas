@@ -100,6 +100,7 @@ def main() -> None:
     terps = parse_entries(index, "TERPS")
     flavs = parse_entries(index, "FLAVS")
     chiral = parse_entries(index, "CHIRAL")
+    cannab = parse_entries(index, "CANNAB")
 
     body = [preamble(f"{BASE}/", "The aroma molecules of cannabis: a terpene atlas.")]
     body.extend(prose_backbone(index))
@@ -107,6 +108,7 @@ def main() -> None:
     body.extend(compound_section("The terpenes, as data", terps))
     body.extend(compound_section("Beyond terpenes: the flavorants, as data", flavs))
     body.extend(compound_section("The mirror pair (enantiomers), as data", chiral))
+    body.extend(compound_section("The cannabinoid isomers, as data", cannab))
     write_twin("index.md", "\n\n".join([body[0]] + ["\n".join(body[1:])]))
 
     dbody = [preamble(f"{BASE}/dementia.html",
@@ -124,7 +126,7 @@ def main() -> None:
     (ROOT / "llms-full.txt").write_text(full, encoding="utf-8", newline="\n")
     (ROOT / "full_site.txt").write_text(full, encoding="utf-8", newline="\n")
 
-    print(f"mirrors written: index.md ({len(terps)} terpenes, {len(flavs)} flavorants, {len(chiral)} enantiomers), dementia.md, llms-full.txt")
+    print(f"mirrors written: index.md ({len(terps)} terpenes, {len(flavs)} flavorants, {len(chiral)} enantiomers, {len(cannab)} cannabinoids), dementia.md, llms-full.txt")
 
 
 if __name__ == "__main__":
