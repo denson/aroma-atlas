@@ -6,7 +6,7 @@
 <meta name="author" content="Denson Smith"/>
 <title>The aroma molecules of cannabis — a terpene atlas</title>
 <link rel="alternate" type="text/markdown" href="index.md" title="Markdown version">
-<script src="https://3Dmol.org/build/3Dmol-min.js"></script>
+<script src="3Dmol-min.js"></script>
 <style>
   /* Typography and palette match colorado-medical-cannabis.org (same desk).
      Both font families are SIL OFL 1.1; license texts in ./fonts/licenses/. */
@@ -75,8 +75,9 @@
   <div class="note"><b>How this was made.</b> The molecules were resolved through <b>PubChem</b> (identity — CID,
   formula, weight, and the live 3D structures), the science pulled from <b>OpenAlex</b>, the non-terpene "flavorant"
   literature (Oswald et al.) <b>verified against CrossRef</b>, and the aroma descriptors / interaction effects from
-  grounded web search. The interactive 3D structures stream from PubChem via 3Dmol.js, so the molecule viewers need
-  an internet connection; everything else works offline.</div>
+  grounded web search. The interactive 3D structures are snapshots of PubChem's records served with this page and
+  rendered by 3Dmol.js, so the whole page works without any third-party request; the snapshots are re-checked against
+  PubChem occasionally.</div>
 
   <h2>Same atoms, different smell</h2>
   <p>The first thing the chemistry tells you: five of these terpenes are the <b>same molecule by formula</b> —
@@ -247,12 +248,22 @@ function loadMol(el, cid){
   try{ v = $3Dmol.createViewer(el, {backgroundColor:'white'}); }
   catch(e){ el.innerHTML='<div class="molna">3D unavailable</div>'; return; }
   VIEWERS.push(v);
-  const base = 'https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/'+cid+'/SDF?record_type=';
-  const tryRT = (rt)=> fetch(base+rt).then(r=>{ if(!r.ok) throw r.status; return r.text(); }).then(sdf=>{
+  // Structures are snapshots of PubChem's records, served with the page
+  // (sdf/<cid>.sdf, refreshed by fetch_sdf.py) so a page view never
+  // depends on PubChem being up or unthrottled. PubChem stays as the
+  // fallback for a missing local file.
+  const remote = 'https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/'+cid+'/SDF?record_type=';
+  const grab = (url)=> fetch(url).then(r=>{ if(!r.ok) throw r.status; return r.text(); }).then(sdf=>{
     if(!sdf || sdf.indexOf('$$$$') < 0) throw 'empty';
     v.addModel(sdf, 'sdf'); v.setStyle({}, STYLES[curStyle]); v.zoomTo(); if(spinning) v.spin('y'); v.render();
   });
-  tryRT('3d').catch(()=>tryRT('2d')).catch(()=>{ el.innerHTML='<div class="molna">structure unavailable</div>'; });
+  grab('sdf/'+cid+'.sdf')
+    .catch(()=>grab(remote+'3d'))
+    .catch(()=>grab(remote+'2d'))
+    .catch(()=>{
+      const i = VIEWERS.indexOf(v); if(i >= 0) VIEWERS.splice(i, 1);
+      el.innerHTML='<div class="molna">structure unavailable</div>';
+    });
 }
 function applyStyle(key){
   curStyle = key;
@@ -271,13 +282,13 @@ function wireControls(){
 function initViewers(){
   wireControls();
   if (typeof $3Dmol === 'undefined') {
-    document.querySelectorAll('.mol').forEach(el=> el.innerHTML='<div class="molna">3D view needs internet</div>');
+    document.querySelectorAll('.mol').forEach(el=> el.innerHTML='<div class="molna">3D viewer failed to load</div>');
     return;
   }
   const all = [];
   TERPS.forEach((t,i)=> all.push({id:'mol'+i, cid:t.cid}));
   FLAVS.forEach((t,i)=> all.push({id:'flav'+i, cid:t.cid}));
-  all.forEach((m,i)=>{ const el = document.getElementById(m.id); if(el) setTimeout(()=>loadMol(el, m.cid), i*140); });
+  all.forEach((m,i)=>{ const el = document.getElementById(m.id); if(el) setTimeout(()=>loadMol(el, m.cid), i*30); });
 }
 renderGrid(TERPS, document.getElementById('terpgrid'), 'mol');
 renderGrid(FLAVS, document.getElementById('flavgrid'), 'flav');
