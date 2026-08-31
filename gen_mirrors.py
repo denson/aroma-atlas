@@ -159,6 +159,12 @@ def main() -> None:
     dbody = [preamble(f"{BASE}/dementia.html",
                       "Cannabis and dementia: what the literature actually rests on.")]
     dbody.append("\n".join(prose_backbone(dementia)))
+    # The nine seed papers behind the co-citation graph live in the machine
+    # layer so every count on the page is independently recomputable.
+    dapp = ROOT / "dementia-appendix.md"
+    if dapp.is_file():
+        dbody.append("## Appendix: the nine seed papers (not on the page)\n\n"
+                     + dapp.read_text(encoding="utf-8").strip())
     write_twin("dementia.md", "\n\n".join(dbody))
 
     full = (

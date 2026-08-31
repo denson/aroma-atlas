@@ -15,7 +15,7 @@
 # Cannabis & dementia: what the literature actually rests on
 A co-citation analysis of the field's key papers — built from the citation graph, not the headlines.
 author: Denson Smith · 2026-06-30
-How this was made. Nine key cannabis-and-dementia papers (reviews, trials, and preclinical landmarks) were pulled, and their reference lists were read from OpenAlex's citation graph. The papers cited in common reveal the field's shared foundation; the references the recent papers add (that the old reviews lack) reveal what's new. The OA PDFs were fetched with compile-papers (3 of 9 open directly; 6 OA-but-bot-blocked). The co-citation structure is reliable metadata; the 2024–26 "current frontier" figures (below) came from grounded web search and are flagged as not-yet-independently-verified. Exact citation counts are as retrieved 2026-06-30 — they grow continuously, so treat them as floors.
+How this was made. Nine key cannabis-and-dementia papers (reviews, trials, and preclinical landmarks) were pulled, and their reference lists were read from OpenAlex's citation graph. The papers cited in common reveal the field's shared foundation; the references the recent papers add (that the old reviews lack) reveal what's new. The OA PDFs were fetched with compile-papers (3 of 9 open directly; 6 OA-but-bot-blocked). The co-citation structure is reliable metadata; the 2024–26 "current frontier" figures (below) came from grounded web search and are flagged as not-yet-independently-verified. Exact citation counts are as retrieved 2026-06-30 — they grow continuously, so treat them as floors. The nine seed papers behind the graph are enumerated, with DOIs and OpenAlex IDs, in this page's machine-readable mirror — every count here is independently recomputable from them.
 How to read this page. Everything below describes one interesting avenue of research that has drawn real attention and funding — not established medicine. Every cited paper passed peer review, and peer review means exactly this: reviewers judged the work worth the scientific community's scrutiny. It does not make the findings true; scrutiny — replication, independent trials, contradiction surviving — is what does, and for most of this literature that deciding scrutiny has not happened yet. That is partly the field's own condition: much of cannabis medical research runs starved of attention and funding, under a long-running stigma that kept serious money and serious careers away for decades. Read the pillar labels below (preclinical versus clinical) as load ratings, not endorsements.
 [Figure labels] 1990 · 2000 · 2010 · 2020 · 2025 · Clinical — human trials · Volicer '97 · dronabinol, open · Walther '06 · THC, small · van den Elsen '15 · THC RCTs · Herrmann '19 · nabilone RCT · Rosenberg '26 · dronabinol RCT · case reports → randomized trials · Mechanism — mouse & dish · Matsuda '90 · CB1 cloned · Hampson '98 · neuroprotect. · Ramírez '05 · AD mice · Esposito '07 · O'Sullivan '16 · PPAR (new) · stays preclinical — no human disease-modification trial
 The clinical lane matured from open-label case work to randomized trials; the mechanism lane — the "disease-modifying" hope — has stayed in animals and cells the entire time.
@@ -75,3 +75,45 @@ Every citation-graph paper has a working DOI link. The §4 "current frontier" it
 - Whiting PF, et al. Cannabinoids for medical use: a systematic review and meta-analysis. JAMA 2015. [doi:10.1001/jama.2015.6358](https://doi.org/10.1001/jama.2015.6358)
 - Marconi A, et al. Meta-analysis of the association between the level of cannabis use and risk of psychosis. Schizophr Bull 2016. [doi:10.1093/schbul/sbw003](https://doi.org/10.1093/schbul/sbw003)
 Every page here has a markdown twin; this page's is [https://denson.github.io/aroma-atlas/dementia.md](https://denson.github.io/aroma-atlas/dementia.md) (also served with .txt appended), carrying everything the 3D viewers show, as text. [https://denson.github.io/aroma-atlas/llms.txt](https://denson.github.io/aroma-atlas/llms.txt) describes how the record is organized.
+
+## Appendix: the nine seed papers (not on the page)
+
+These are the nine seed papers whose OpenAlex reference lists generate every
+co-citation statistic on the cannabis-and-dementia page. The list was recovered
+from the original analysis manifest and the page's statistics were then
+independently recomputed twice against the live OpenAlex `referenced_works`
+arrays on 2026-08-31 (set membership, one vote per seed): works cited by three
+or more seeds = 21 (exact match); Pertwee 2007 = 5/9; Esposito 2007 = 4/9;
+Walther 2006 = 4/9; Herrmann 2019 among the six 2020-2024 seeds = 3/6; the
+compile-papers availability split = 3 directly open / 6 OA-but-bot-blocked.
+All exact. Recompute it yourself: fetch each seed's `referenced_works` from
+`https://api.openalex.org/works/<id>` and count.
+
+The nine seeds (title — year — DOI — OpenAlex ID):
+
+1. Cannabinoids and Dementia: A Review of Clinical and Preclinical Data — 2010 —
+   doi:10.3390/ph3082689 — W1965891153
+2. Natural Cannabinoids Improve Dopamine Neurotransmission and Tau and Amyloid
+   Pathology in a Mouse Model of Tauopathy — 2013 — doi:10.3233/jad-130050 —
+   W2156689577
+3. Molecular Targets of Cannabidiol in Neurological Disorders — 2015 —
+   doi:10.1007/s13311-015-0377-3 — W1166458116
+4. Current Aspects of the Endocannabinoid System and Targeted THC and CBD
+   Phytocannabinoids as Potential Therapeutics for Parkinson's and Alzheimer's
+   Diseases: a Review — 2020 — doi:10.1007/s12035-020-02054-6 — W3056226553
+5. From Cannabis sativa to Cannabidiol: Promising Therapeutic Candidate for the
+   Treatment of Neurodegenerative Diseases — 2020 — doi:10.3389/fphar.2020.00124 —
+   W3009563806
+6. Potential and Limits of Cannabinoids in Alzheimer's Disease Therapy — 2021 —
+   doi:10.3390/biology10060542 — W3167332289
+7. Cannabinoids in the management of behavioral, psychological, and motor
+   symptoms of neurocognitive disorders: a mixed studies systematic review —
+   2022 — doi:10.1186/s42238-022-00119-y — W4220923298
+8. Balancing risks and benefits of cannabis use: umbrella review of
+   meta-analyses of randomised controlled trials and observational studies —
+   2023 — doi:10.1136/bmj-2022-072348 — W4386278385
+9. Cannabinoids for Behavioral Symptoms in Dementia: An Overview — 2024 —
+   doi:10.1055/a-2262-7837 — W4392757579
+
+The six "recent" seeds referenced by the page's 3-of-6 statistics are numbers
+4 through 9 (2020-2024).
