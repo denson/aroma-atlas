@@ -44,6 +44,7 @@
   .card .aroma{font-family:var(--ui);font-size:13px;font-weight:600;margin:7px 0 3px;} .card .src{font-size:13.5px;color:var(--ink);margin:0;}
   .molhint{font-size:11.5px;color:var(--muted);margin:2px 0 0;}
   .figart{margin:22px 0 18px;}
+  .figart.compact{max-width:600px;margin-left:auto;margin-right:auto;}
   .figart img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px;}
   .figart .molhint{text-align:center;max-width:78ch;margin:10px auto 0;line-height:1.45;}
   @media(max-width:560px){.figart{margin:18px 0;} .figart .molhint{font-size:14px;text-align:left;}}
@@ -90,11 +91,11 @@
   still differ the way your left hand differs from your right: mirror images that no rotation can superimpose (chemists call them
   <b>enantiomers</b>). Your nose tells them apart, because smell receptors are proteins, and proteins are themselves
   built one-handed — a mirror-image molecule docks into them differently. The textbook pair is <b>carvone</b>,
-  <code>C₁₀H₁₄O</code>: the R hand is the smell of <b>spearmint</b>; its mirror image, the S hand, is <b>caraway and
-  dill</b>. Below, the pair turns in opposite directions so the two stay perfect mirror images of each
+  <code>C₁₀H₁₄O</code>: the S hand is the smell of <b>caraway and dill</b>; its mirror image, the R hand, is
+  <b>spearmint</b>. Below, the pair turns in opposite directions so the two stay perfect mirror images of each
   other as they move — watch the red oxygen. Drag either one: every bond length and angle matches, and they
   will never line up.</p>
-  <figure class="figart">
+  <figure class="figart compact">
     <img src="images/carvone-hands.webp" width="2048" height="1152" loading="lazy" decoding="async"
       alt="A left hand tinted ochre labeled (S)-(+)-carvone, caraway/dill, and a right hand tinted evergreen labeled (R)-(-)-carvone, spearmint - palms toward the viewer, thumbs meeting at a dashed mirror line, exact mirror images of each other. Annotation: each is the other's mirror image, and your nose knows which is which.">
     <p class="molhint">Chirality is handedness: raise your own hands palms-out and you are holding the diagram. R and S
@@ -270,8 +271,8 @@
 
 <script>
 const CHIRAL = [
-  {n:"(R)-(−)-carvone", cid:439570, f:"C₁₀H₁₄O", mw:"150.22", aroma:"Spearmint", col:"herbal", src:"The main aroma of spearmint oil. The mirror image of the molecule beside it."},
-  {n:"(S)-(+)-carvone", cid:16724, f:"C₁₀H₁₄O", mw:"150.22", aroma:"Caraway, dill", col:"earthy", src:"The smell of caraway seed and dill. Same atoms, same bonds as spearmint's carvone — opposite hand."}
+  {n:"(S)-(+)-carvone", cid:16724, f:"C₁₀H₁₄O", mw:"150.22", aroma:"Caraway, dill", col:"earthy", src:"The smell of caraway seed and dill. Same atoms, same bonds as spearmint's carvone — opposite hand."},
+  {n:"(R)-(−)-carvone", cid:439570, f:"C₁₀H₁₄O", mw:"150.22", aroma:"Spearmint", col:"herbal", src:"The main aroma of spearmint oil. The mirror image of the molecule beside it."}
 ];
 const CANNAB = [
   {n:"Δ⁹-THC", cid:16078, f:"C₂₁H₃₀O₂", mw:"314.5", aroma:"Fits CB1 · the intoxication", col:"pepper", src:"The main psychoactive cannabinoid: a partial agonist at the brain's CB1 receptor. Its shape is the high."},
