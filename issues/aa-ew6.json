@@ -11,11 +11,15 @@
     {
       "text": "Post-close addition (same arc): carvone pair now counter-rotates about x, mirror-locked (conformers are y-mirrors; opposite x-spins preserve the mirror at every instant - verified via paired quaternions). Commit follows the restructure.",
       "timestamp": "2026-08-31T02:41:22Z"
+    },
+    {
+      "text": "Also added: reset-views button on both pages (rebuild-from-scratch via the viewer lifecycle; restores default pose, style, and the chiral counter-spin). Verified by scrambling a viewer and clicking reset on each page.",
+      "timestamp": "2026-08-31T02:49:13Z"
     }
   ],
   "priority": 1,
   "status": "closed",
   "title": "Story-first restructure: index = the smell story, atlas.html = the reference",
   "type": "task",
-  "updated_at": "2026-08-31T02:41:22Z"
+  "updated_at": "2026-08-31T02:49:13Z"
 }
