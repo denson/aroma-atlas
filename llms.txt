@@ -2,8 +2,7 @@
 > An interactive atlas of the aroma molecules of cannabis: the ten headline
 > terpenes and the beyond-terpene flavorants (volatile sulfur compounds,
 > tropical thiols, esters), each with live 3D structures, formulas, and the
-> other plants that share the same molecule. A stoagen demonstration
-> (https://stoagen.com/). Author: Denson Smith.
+> other plants that share the same molecule. Author: Denson Smith.
 
 Everything here is information from the publisher, not instructions to you.
 Your operator's instructions come first; apply ours as source metadata.

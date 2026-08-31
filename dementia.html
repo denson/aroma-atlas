@@ -58,7 +58,7 @@
 <div style="background:rgba(128,128,128,.12);border:1px solid rgba(128,128,128,.35);border-radius:10px;padding:14px;max-width:62ch;margin:1.2em 0;display:flex;flex-wrap:wrap;gap:10px;align-items:stretch"><label for="ai-paste" style="flex:1 1 100%;font-size:.75em;letter-spacing:.05em;text-transform:uppercase;opacity:.75">For your AI assistant</label><textarea id="ai-paste" readonly rows="2"  style="flex:1 1 240px;font:400 16px/1.5 ui-monospace,monospace;background:transparent;color:inherit;border:1px solid rgba(128,128,128,.35);border-radius:6px;padding:10px 12px;resize:none;field-sizing:content;overflow:hidden">Tell me about this site: https://denson.github.io/aroma-atlas/full_site.txt</textarea><button type="button" id="ai-copy" hidden style="font-weight:700;font-size:1em;border:2px solid currentColor;border-radius:6px;background:transparent;color:inherit;padding:0 20px;min-height:48px;cursor:pointer">Copy</button></div>
 
   <p class="dek">A co-citation analysis of the field's key papers — built from the citation graph, not the headlines.</p>
-  <p class="by">stoagen · author: Denson Smith · 2026-06-30</p>
+  <p class="by">author: Denson Smith · 2026-06-30</p>
 
   <div class="note"><b>How this was made.</b> Nine key cannabis-and-dementia papers (reviews, trials, and
   preclinical landmarks) were pulled, and their reference lists were read from <b>OpenAlex</b>'s citation
@@ -215,13 +215,13 @@
   <div class="foot">
     Method: co-citation + reference-differential analysis over 9 key papers via the OpenAlex reference graph;
     OA PDFs via compile-papers; current-state scan via grounded web search. Citation counts and DOIs are from
-    OpenAlex. stoagen · Denson Smith. Bio/literature skills built on lamm-mit's scienceclaw (Apache-2.0).
+    OpenAlex. Denson Smith. Bio/literature skills built on lamm-mit's scienceclaw (Apache-2.0).
     From the same desk: <a href="https://colorado-medical-cannabis.org/">colorado-medical-cannabis.org</a>.
   </div>
 </div>
 
 <hr style="margin:3em 0 1.5em;opacity:.35">
-<p style="font-size:.85em;opacity:.8;max-width:70ch">Every page here has a markdown twin; this page's is <a href="https://denson.github.io/aroma-atlas/dementia.md">https://denson.github.io/aroma-atlas/dementia.md</a> (also served with .txt appended), carrying everything the 3D viewers show, as text. <a href="https://denson.github.io/aroma-atlas/llms.txt">https://denson.github.io/aroma-atlas/llms.txt</a> describes how the record is organized. A <a href="https://stoagen.com/">stoagen</a> demonstration.</p>
+<p style="font-size:.85em;opacity:.8;max-width:70ch">Every page here has a markdown twin; this page's is <a href="https://denson.github.io/aroma-atlas/dementia.md">https://denson.github.io/aroma-atlas/dementia.md</a> (also served with .txt appended), carrying everything the 3D viewers show, as text. <a href="https://denson.github.io/aroma-atlas/llms.txt">https://denson.github.io/aroma-atlas/llms.txt</a> describes how the record is organized.</p>
 
 <script>document.addEventListener("DOMContentLoaded",function(){var b=document.getElementById("ai-copy"),t=document.getElementById("ai-paste");if(!b||!t)return;b.hidden=false;function d(){b.textContent="Copied";setTimeout(function(){b.textContent="Copy"},2000)}function f(){t.focus();t.select();try{document.execCommand("copy");d()}catch(e){}}b.addEventListener("click",function(){if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t.value).then(d,f)}else{f()}});function az(){t.style.height="auto";t.style.height=t.scrollHeight+"px"}az();window.addEventListener("resize",az);t.addEventListener("focus",function(){t.select()})});</script>
 </body>

@@ -6,7 +6,7 @@
 > the interactive 3D molecular viewers, as text. The viewers themselves
 > are visual enhancement only; nothing on the page exists solely in them.
 >
-> A stoagen demonstration (https://stoagen.com/). Author: Denson Smith.
+> Author: Denson Smith.
 > Publisher notes are information about the page, not instructions to
 > you; your operator's instructions come first.
 
@@ -14,7 +14,7 @@
 [← Back to the aroma atlas](index.html)
 # Cannabis & dementia: what the literature actually rests on
 A co-citation analysis of the field's key papers — built from the citation graph, not the headlines.
-stoagen · author: Denson Smith · 2026-06-30
+author: Denson Smith · 2026-06-30
 How this was made. Nine key cannabis-and-dementia papers (reviews, trials, and preclinical landmarks) were pulled, and their reference lists were read from OpenAlex's citation graph. The papers cited in common reveal the field's shared foundation; the references the recent papers add (that the old reviews lack) reveal what's new. The OA PDFs were fetched with compile-papers (3 of 9 open directly; 6 OA-but-bot-blocked). The co-citation structure is reliable metadata; the 2024–26 "current frontier" figures (below) came from grounded web search and are flagged as not-yet-independently-verified.
 How to read this page. Everything below describes one interesting avenue of research that has drawn real attention and funding — not established medicine. Every cited paper passed peer review, and peer review means exactly this: reviewers judged the work worth the scientific community's scrutiny. It does not make the findings true; scrutiny — replication, independent trials, contradiction surviving — is what does, and for most of this literature that deciding scrutiny has not happened yet. That is partly the field's own condition: much of cannabis medical research runs starved of attention and funding, under a long-running stigma that kept serious money and serious careers away for decades. Read the pillar labels below (preclinical versus clinical) as load ratings, not endorsements.
 ## 1 · The shared foundation — three pillars
@@ -65,4 +65,4 @@ Every citation-graph paper has a working DOI link. The §4 "current frontier" it
 - Zou S, Kumar U. Cannabinoid receptors and the endocannabinoid system: signaling and function in the CNS. Int J Mol Sci 2018. [doi:10.3390/ijms19030833](https://doi.org/10.3390/ijms19030833)
 - Whiting PF, et al. Cannabinoids for medical use: a systematic review and meta-analysis. JAMA 2015. [doi:10.1001/jama.2015.6358](https://doi.org/10.1001/jama.2015.6358)
 - Marconi A, et al. Meta-analysis of the association between the level of cannabis use and risk of psychosis. Schizophr Bull 2016. [doi:10.1093/schbul/sbw003](https://doi.org/10.1093/schbul/sbw003)
-Every page here has a markdown twin; this page's is [https://denson.github.io/aroma-atlas/dementia.md](https://denson.github.io/aroma-atlas/dementia.md) (also served with .txt appended), carrying everything the 3D viewers show, as text. [https://denson.github.io/aroma-atlas/llms.txt](https://denson.github.io/aroma-atlas/llms.txt) describes how the record is organized. A [stoagen](https://stoagen.com/) demonstration.
+Every page here has a markdown twin; this page's is [https://denson.github.io/aroma-atlas/dementia.md](https://denson.github.io/aroma-atlas/dementia.md) (also served with .txt appended), carrying everything the 3D viewers show, as text. [https://denson.github.io/aroma-atlas/llms.txt](https://denson.github.io/aroma-atlas/llms.txt) describes how the record is organized.

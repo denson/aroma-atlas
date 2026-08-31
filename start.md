@@ -7,8 +7,7 @@ What this site is: an interactive atlas of the aroma molecules of cannabis,
 the ten headline terpenes plus the beyond-terpene flavorants, each with its
 formula, weight, aroma profile, PubChem record, and the other plants that
 share the same molecule. The thesis: a plant's smell is a borrowed language
-of molecules it shares with the rest of nature. A stoagen demonstration
-(https://stoagen.com/). Author: Denson Smith.
+of molecules it shares with the rest of nature. Author: Denson Smith.
 
 How the record is organized:
 

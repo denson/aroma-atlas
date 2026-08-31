@@ -43,6 +43,10 @@
   .molna{font-size:11.5px;color:var(--muted);text-align:center;padding-top:64px;}
   .card .aroma{font-family:var(--ui);font-size:13px;font-weight:600;margin:7px 0 3px;} .card .src{font-size:13.5px;color:var(--ink);margin:0;}
   .molhint{font-size:11.5px;color:var(--muted);margin:2px 0 0;}
+  .figart{margin:22px 0 18px;}
+  .figart img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px;}
+  .figart .molhint{text-align:center;max-width:78ch;margin:10px auto 0;line-height:1.45;}
+  @media(max-width:560px){.figart{margin:18px 0;} .figart .molhint{font-size:14px;text-align:left;}}
   .ctl{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:9px 0 4px;font-family:var(--ui);font-size:12.5px;}
   .ctl .ctl-label{color:var(--muted);margin-right:2px;}
   .ctl button{font-family:var(--ui);font-size:12px;border:1px solid var(--line);background:rgba(255,255,255,.5);color:var(--ink);border-radius:7px;padding:5px 11px;cursor:pointer;}
@@ -66,10 +70,9 @@
 <div style="background:rgba(128,128,128,.12);border:1px solid rgba(128,128,128,.35);border-radius:10px;padding:14px;max-width:62ch;margin:1.2em 0;display:flex;flex-wrap:wrap;gap:10px;align-items:stretch"><label for="ai-paste" style="flex:1 1 100%;font-size:.75em;letter-spacing:.05em;text-transform:uppercase;opacity:.75">For your AI assistant</label><textarea id="ai-paste" readonly rows="2"  style="flex:1 1 240px;font:400 16px/1.5 ui-monospace,monospace;background:transparent;color:inherit;border:1px solid rgba(128,128,128,.35);border-radius:6px;padding:10px 12px;resize:none;field-sizing:content;overflow:hidden">Tell me about this site: https://denson.github.io/aroma-atlas/full_site.txt</textarea><button type="button" id="ai-copy" hidden style="font-weight:700;font-size:1em;border:2px solid currentColor;border-radius:6px;background:transparent;color:inherit;padding:0 20px;min-height:48px;cursor:pointer">Copy</button></div>
 
   <p class="dek">A plant's smell is a borrowed language of molecules it shares with the rest of nature.</p>
-  <p class="by">stoagen · author: Denson Smith · 2026-06-30</p>
+  <p class="by">author: Denson Smith · 2026-06-30</p>
 
-  <div class="frame">A worked example from <b>stoagen</b> — a knowledge foundry that turns a question into a
-  grounded, cited map of a domain's molecules and literature. Every chemical identifier here is real and checkable;
+  <div class="frame">This atlas turns a question into a grounded, cited map of a domain's molecules and literature. Every chemical identifier here is real and checkable;
   <b>drag any molecule below to rotate it, scroll to zoom.</b></div>
 
   <div class="note"><b>How this was made.</b> The molecules were resolved through <b>PubChem</b> (identity — CID,
@@ -118,6 +121,16 @@
   effect. It is from receptors in the nose to receptors everywhere else: from here on, the atlas follows
   <b>cannabis's own compounds</b> past the nose and into the body, where the same rule — <b>shape decides
   effect</b> — carries higher stakes and substantial evidence.</p>
+
+  <figure class="figart">
+    <img src="images/smell-path-carvone.webp" width="2048" height="1152" loading="lazy" decoding="async"
+      alt="Three-lane diagram. (R)-(-)-carvone, drawn as a green puzzle piece, leaves its jar and snaps into the matching pocket on a receptor board; a signal reaches the brain, which reads spearmint. (S)-(+)-carvone, the same piece mirror-flipped in ochre, fits only its own mirrored pocket, and the brain reads caraway/dill. Smelled together, each piece fits its own pocket and the brain reads both words at once - spearmint plus caraway/dill - not a new third smell.">
+    <p class="molhint">Illustration, not data: carvone's two hands drawn as mirror-image puzzle pieces. Each fits only
+    its own receptor pocket — the (R)-(&#8722;) hand reads as spearmint, the (S)-(+) hand as caraway/dill — and smelled
+    together, both qualities are perceived at once, not a new third smell
+    (<a href="https://academic.oup.com/chemse/article/13/2/307/455642">Pike, Enns &amp; Hornung 1988</a>).</p>
+  </figure>
+
   <p>The textbook case:
   <a href="https://pubchem.ncbi.nlm.nih.gov/compound/16078">Δ⁹-THC</a>,
   <a href="https://pubchem.ncbi.nlm.nih.gov/compound/644019">CBD</a>, and
@@ -134,6 +147,15 @@
   exposure, only a few years wide — nobody can yet say what its long-term effects are, so nobody can manage them.
   (Sources and the current-law caveats are in this page's machine-readable appendix.) Rotate all three:</p>
   <div id="cannabgrid" class="grid"></div>
+
+  <figure class="figart">
+    <img src="images/cannabinoid-assemblies.webp" width="2048" height="1152" loading="lazy" decoding="async"
+      alt="Three necklace-like diagrams built from identical beads: CBD with its second loop hanging open; delta-9-THC fully closed with a double link beside the loop junction; delta-8-THC fully closed with the same double link moved along the loop. Below, a conversion: CBD plus a drop of acid becomes delta-8 - the open loop closes and the double link settles into a new spot.">
+    <p class="molhint">Illustration, not data — and beads are not atoms: the drawing shows the kind of difference,
+    not the count. CBD is the open-loop assembly; Δ⁹ and Δ⁸ differ by one moved double bond; and closing CBD's open
+    loop with acid is how commercial Δ⁸ is made.</p>
+  </figure>
+
   <p>And nothing in a jar arrives as one molecule. What reaches you is a <b>blend</b> — cannabinoids setting the
   core effect, terpenes and trace flavorants riding along — and the blend differs jar to jar. Here's what should
   not be controversial: <b>co-administered biologically active compounds changing each other's overall effect is
@@ -145,6 +167,14 @@
   what, at the doses a flower actually delivers — shaping what a product does for a medical condition and what the
   high feels like recreationally. Where that evidence stands — what is proven, what is still promise, and the one
   pairing with human RCT support — is laid out honestly in the entourage section below.</p>
+
+  <figure class="figart">
+    <img src="images/entourage-ordinary.webp" width="2048" height="1152" loading="lazy" decoding="async"
+      alt="Two panels. Left: a wine glass plus a prescription oxycodone bottle leads to a boxed warning - alcohol makes opioid painkillers stronger. Right: a glass of orange juice plus an allergy capsule leads to the same capsule faded with a downward arrow - absorption reduced; the label says take it with water instead.">
+    <p class="molhint">Combination effects are ordinary pharmacology: alcohol potentiates opioid painkillers to the
+    point of a boxed warning, and orange juice cuts a common antihistamine's absorption enough that its label says to
+    take it with water. The question was never <i>whether</i> molecules interact — only which combinations do what.</p>
+  </figure>
 
   <h2>The atlas — the terpenes</h2>
   <p class="molhint">Each card carries the live PubChem 3D structure — drag to rotate, scroll to zoom. Use the controls to change representation or spin them all.</p>
@@ -223,6 +253,15 @@
   <b>synergy</b> (terpene + thiol don't smell like "pine + sulfur" — they fuse into a brand-new quality). The trace
   compound rewrites how the brain reads the entire terpene mixture.</p>
 
+  <figure class="figart">
+    <img src="images/configural-smell.webp" width="2048" height="1152" loading="lazy" decoding="async"
+      alt="Jars of ethyl isobutyrate (strawberry-like) and ethyl maltol (caramel-like) pour into a 30:70 mixture jar where both molecules remain separate and unchanged. Each molecule docks its own receptor pocket on a board, and the two signals converge in the brain, which reads a single new word: pineapple. A new odor object, created in the brain, not a new molecule in the jar.">
+    <p class="molhint">Configural perception, illustrated: strawberry-like ethyl isobutyrate and caramel-like ethyl
+    maltol, mixed 30:70, are read by the brain as one new odor object — pineapple — while nothing new exists in the
+    jar (Le Berre et al. 2008; reviewed in
+    <a href="https://doi.org/10.1242/jeb.242274">Coureaud et al. 2022</a>).</p>
+  </figure>
+
   <p><b>And a fair question the aroma story raises: do the flavorants stop at the nose?</b> These are not inert
   perfumes — thiols, indoles, and volatile acids are potently biologically active classes of molecule, firing
   receptors at concentrations far below a part per million, which is exactly why you can smell them at trace
@@ -264,7 +303,7 @@
 
   <div class="foot">PubChem (identity + live 3D structures) · OpenAlex (literature) · CrossRef (citation verification) ·
   grounded web search (aroma, sources, entourage, recent dementia trials). Chemical identities and the Oswald DOIs are
-  exact; aroma descriptors and recent-trial figures are web-sourced. stoagen · Denson Smith · built on lamm-mit's
+  exact; aroma descriptors and recent-trial figures are web-sourced. Denson Smith · built on lamm-mit's
   scienceclaw (Apache-2.0). 3D viewer: 3Dmol.js.
   From the same desk: <a href="https://colorado-medical-cannabis.org/">colorado-medical-cannabis.org</a>.</div>
 </div>
@@ -378,7 +417,7 @@ else window.addEventListener('load', initViewers);
 </script>
 
 <hr style="margin:3em 0 1.5em;opacity:.35">
-<p style="font-size:.85em;opacity:.8;max-width:70ch">Every page here has a markdown twin; this page's is <a href="https://denson.github.io/aroma-atlas/index.md">https://denson.github.io/aroma-atlas/index.md</a> (also served with .txt appended), carrying everything the 3D viewers show, as text. <a href="https://denson.github.io/aroma-atlas/llms.txt">https://denson.github.io/aroma-atlas/llms.txt</a> describes how the record is organized. A <a href="https://stoagen.com/">stoagen</a> demonstration.</p>
+<p style="font-size:.85em;opacity:.8;max-width:70ch">Every page here has a markdown twin; this page's is <a href="https://denson.github.io/aroma-atlas/index.md">https://denson.github.io/aroma-atlas/index.md</a> (also served with .txt appended), carrying everything the 3D viewers show, as text. <a href="https://denson.github.io/aroma-atlas/llms.txt">https://denson.github.io/aroma-atlas/llms.txt</a> describes how the record is organized.</p>
 
 <script>document.addEventListener("DOMContentLoaded",function(){var b=document.getElementById("ai-copy"),t=document.getElementById("ai-paste");if(!b||!t)return;b.hidden=false;function d(){b.textContent="Copied";setTimeout(function(){b.textContent="Copy"},2000)}function f(){t.focus();t.select();try{document.execCommand("copy");d()}catch(e){}}b.addEventListener("click",function(){if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t.value).then(d,f)}else{f()}});function az(){t.style.height="auto";t.style.height=t.scrollHeight+"px"}az();window.addEventListener("resize",az);t.addEventListener("focus",function(){t.select()})});</script>
 </body>
