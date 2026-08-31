@@ -26,6 +26,10 @@
     {
       "text": "OPENALEX and reproducibility finding - every exact citation count printed on dementia.html is already below current OpenAlex: Matsuda 5009 to 5027; Munro 5065 to 5096; Pertwee 1896 to 1934; Hampson 843 to 847; Ramirez 780 to 783; Benito 618 to 622; Esposito 296 to 305; Whiting 2108 to 2170, checked 2026-08-31. Add an as-of date or avoid exact live counts. Separately, main does not enumerate the nine seed papers behind the graph, so 21 works cited by at least 3, 5 of 9, 4 of 9, 3 of 6 recent, and 3-open or 6-blocked cannot be independently reproduced from the canonical repo or site.",
       "timestamp": "2026-08-31T17:10:22Z"
+    },
+    {
+      "text": "MIRROR-LAW finding - the checked-in mirrors regenerate byte-identically, but gen_mirrors.py still omits visible page content. index.md omits the six-item .iso strip, namely the C10H16 terpene and aroma chips. dementia.md omits all three .new blocks under section 2, the three visible Pillar tag labels, and the SVG timeline visible study and year labels; the figcaption is present but not the labels. Thus index.md and dementia.md are not supersets of their HTML pages, and the omissions propagate into both full-corpus files.",
+      "timestamp": "2026-08-31T17:10:22Z"
     }
   ],
   "priority": 2,
