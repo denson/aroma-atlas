@@ -7,9 +7,15 @@
   "description": "21 viewers on one page exceeded Chrome's ~16 WebGL context cap, silently killing the first-created five (carvone pair + cannabinoid trio). Fix per Denson: split into two pages - index.html keeps the terpene/flavorant atlas (16 viewers), new page carries the same-atoms concept story (chips, twins, mirror twist, hinge, cannabinoid trio, entourage; 5 viewers) with its figures. Also keeping viewport-based viewer create/release (LIVE map, WEBGL_lose_context) since mobile GPUs cap at ~8. gen_mirrors.py learns the new page; llms.txt/start.md/sitemap/cross-links updated.",
   "id": "aa-8u1",
   "labels": [],
+  "comments": [
+    {
+      "text": "Follow-up d46ee01: the generator patch in 91c8b04 had silently half-applied - same-atoms.md was never written (mirror 404'd live while the page served; caught by post-deploy verification). Fixed with verifiable edits: same-atoms.md/.txt now carry the page prose + chiral/cannabinoid data + the delta-8 appendix; index.md carries only its own page; full corpus concatenates all three.",
+      "timestamp": "2026-08-31T01:52:32Z"
+    }
+  ],
   "priority": 1,
   "status": "closed",
   "title": "Split index into two pages: aroma atlas + same-atoms story (WebGL context cap broke viewers)",
   "type": "task",
-  "updated_at": "2026-08-31T01:45:27Z"
+  "updated_at": "2026-08-31T01:52:32Z"
 }
