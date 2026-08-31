@@ -43,6 +43,10 @@
   .molna{font-size:11.5px;color:var(--muted);text-align:center;padding-top:64px;}
   .card .aroma{font-family:var(--ui);font-size:13px;font-weight:600;margin:7px 0 3px;} .card .src{font-size:13.5px;color:var(--ink);margin:0;}
   .molhint{font-size:11.5px;color:var(--muted);margin:2px 0 0;}
+  details.howto{margin:10px 0;font-size:13.5px;}
+  details.howto summary{cursor:pointer;color:var(--accent);text-decoration:underline;text-underline-offset:.18em;font-family:var(--ui);font-size:12.5px;}
+  details.howto[open]{background:rgba(255,255,255,.3);border:1px solid var(--line);border-radius:8px;padding:10px 14px;}
+  details.howto ul{margin:6px 0;} details.howto p{margin:8px 0 4px;}
   .figart{margin:22px 0 18px;}
   .figart.compact{max-width:600px;margin-left:auto;margin-right:auto;}
   #chiralgrid{max-width:600px;margin-left:auto;margin-right:auto;}
@@ -106,6 +110,21 @@
   </figure>
 
   <div class="ctl"><button id="resetbtn">⟲ Reset all 3D views</button></div>
+  <details class="howto">
+    <summary>How the 3D viewers work</summary>
+    <p>Every viewer is a real molecular structure — PubChem's record for that exact compound, served with this
+    page and drawn in your browser by the open-source viewer 3Dmol.js. Nothing is an artist's impression, and
+    nothing leaves the page to render it.</p>
+    <ul>
+      <li><b>Rotate:</b> drag with the mouse, or one finger.</li>
+      <li><b>Zoom:</b> scroll wheel, or pinch with two fingers.</li>
+      <li><b>Move:</b> Ctrl-drag (middle-drag also works), or three fingers.</li>
+      <li>Colors are chemistry's standard code: gray carbon, white hydrogen, red oxygen — and where present,
+      yellow sulfur and blue nitrogen.</li>
+    </ul>
+    <p>Viewer: <a href="https://3dmol.org/doc/index.html">3Dmol.js documentation</a> — Rego &amp; Koes,
+    <i>Bioinformatics</i> 2015, <a href="https://doi.org/10.1093/bioinformatics/btu829">doi:10.1093/bioinformatics/btu829</a>.</p>
+  </details>
   <div id="chiralgrid" class="grid"></div>
   <p>Limonene has hands too: the bright orange-peel citrus people mean by "limonene" is the R hand,
   <a href="https://pubchem.ncbi.nlm.nih.gov/compound/440917">(+)-limonene</a> — the form the Johns Hopkins anxiety
