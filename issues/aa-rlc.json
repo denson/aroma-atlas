@@ -1,5 +1,5 @@
 {
-  "assignee": "",
+  "assignee": "unknown",
   "blocked_by": [],
   "blocks": [],
   "created": "2026-08-31T15:57:31Z",
@@ -13,8 +13,8 @@
     }
   ],
   "priority": 2,
-  "status": "open",
+  "status": "in_progress",
   "title": "Codex: independent check of the story-first site (post-review fixes)",
   "type": "task",
-  "updated_at": "2026-08-31T16:27:22Z"
+  "updated_at": "2026-08-31T16:46:57Z"
 }
