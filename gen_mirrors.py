@@ -54,8 +54,22 @@ def prose_backbone(source: str) -> list[str]:
     # boxes, the interaction rows) would exist only on the page - a violation
     # of the mirror law. Non-greedy close is fine: a nested inner div's close
     # ends the capture after the inner content is already included.
+    # SVG figures carry visible study/year labels; collect each svg's <text>
+    # nodes into one paragraph so the mirror keeps what the drawing shows.
+    def svg_labels(m: "re.Match[str]") -> str:
+        texts = [strip_tags(x) for x in re.findall(r"<text[^>]*>(.*?)</text>", m.group(0), re.S)]
+        joined = " · ".join(x for x in texts if x)
+        return f"<p>[Figure labels] {joined}</p>" if joined else ""
+    source = re.sub(r"<svg\b.*?</svg>", svg_labels, source, flags=re.S)
+    # The numbered what's-new blocks nest divs, so they get their own rewrite
+    # (the generic non-greedy one would stop at the inner close).
     source = re.sub(
-        r'<div class="(?:frame|note|star|warnbox|xform)"[^>]*>(.*?)</div>',
+        r'<div class="new"><div class="n">(\d+)</div><div>(.*?)</div></div>',
+        lambda m: f"<p>{m.group(1)}. {m.group(2)}</p>", source, flags=re.S)
+    # A space before each chip's fine print keeps flattened chip text readable.
+    source = source.replace("<small>", " <small>")
+    source = re.sub(
+        r'<div class="(?:frame|note|star|warnbox|xform|iso|tag)"[^>]*>(.*?)</div>',
         lambda m: "<p>" + m.group(1) + "</p>", source, flags=re.S)
     lines = []
     for tag, content in re.findall(r"<(h1|h2|h3|h4|p|li|summary|figcaption)\b[^>]*>(.*?)</\1>", source, re.S):
