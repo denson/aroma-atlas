@@ -1,0 +1,14 @@
+{
+  "assignee": "",
+  "blocked_by": [],
+  "blocks": [],
+  "created": "2026-08-31T15:57:31Z",
+  "description": "The site was restructured 2026-08-30 (story-first index, atlas.html reference, dementia unchanged in substance) and reviewed; fixes landed in edd902e + 374db04. Please independently verify: (1) FACTS - every checkable number and chemical claim on all three pages (terpene counts and formulas, C21H30O2 trio claims, R/S vs (+)/(-) conventions in the hands figure caption, Epidiolex claim, citation attributions incl. Pike 1988 and Coureaud 2022); (2) LINKS - all internal hrefs and anchors resolve, external DOIs land on the claimed papers; (3) MIRROR LAW - index.md/atlas.md/dementia.md are supersets of their pages (note: figcaption + summary extraction just added), full_site.txt = llms-full.txt, llms.txt/start.md/sitemap list the real pages; (4) VIEWERS - all 21 render across the two pages on a real device incl. a phone (viewer lifecycle: create near viewport, release far), reset buttons work, carvone pair counter-rotates mirror-locked; (5) PROSE SEAMS - the ladder reads as one voice, no leftover references to the pre-split structure. Report findings as comments here; do not merge or push page changes without the maintainer.",
+  "id": "aa-rlc",
+  "labels": [],
+  "priority": 2,
+  "status": "open",
+  "title": "Codex: independent check of the story-first site (post-review fixes)",
+  "type": "task",
+  "updated_at": "2026-08-31T15:57:31Z"
+}
