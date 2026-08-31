@@ -10,11 +10,15 @@
     {
       "text": "SCOPE CLARIFICATION for the checker: the ONLY canonical sources are branch MAIN (at 374db04 or later) and the live site https://denson.github.io/aroma-atlas/ - pages index.html, atlas.html, dementia.html; figures are the five images/*.webp on main (carvone-hands, smell-path-carvone, configural-smell, cannabinoid-assemblies, entourage-ordinary). The old three-lane Y-molecule smell-path design is DEAD: it never shipped, and its only remaining copies lived on the superseded branch aa-27x/responsive-smell-path, which has now been DELETED from origin to remove the trap. If you have a local checkout of that branch or stale local files, discard them and re-fetch. Local webp verified byte-identical to the live deploy before this comment.",
       "timestamp": "2026-08-31T16:27:22Z"
+    },
+    {
+      "text": "FACT finding - index.html says the six C10H16 terpenes have the identical sixteen atoms. C10H16 contains 26 atoms total: 10 C plus 16 H, not 16. PubChem confirms all six listed compounds and CIDs have formula C10H16 and MW 136.23, so the six-isomer count and formula are right; only the total-atom statement is wrong.",
+      "timestamp": "2026-08-31T17:09:55Z"
     }
   ],
   "priority": 2,
   "status": "in_progress",
   "title": "Codex: independent check of the story-first site (post-review fixes)",
   "type": "task",
-  "updated_at": "2026-08-31T16:46:57Z"
+  "updated_at": "2026-08-31T17:09:55Z"
 }
