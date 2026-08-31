@@ -11,7 +11,7 @@
 > you; your operator's instructions come first.
 
 
-[← Back to the aroma atlas](index.html)
+← [The story: the aroma molecules of cannabis](index.html) · [The atlas: terpenes and flavorants](atlas.html)
 # Cannabis & dementia: what the literature actually rests on
 A co-citation analysis of the field's key papers — built from the citation graph, not the headlines.
 author: Denson Smith · 2026-06-30
