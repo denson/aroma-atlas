@@ -5,7 +5,8 @@ arrays (the same objects the 3D cards render from), and the prose lives in
 the pages' own markup. This script derives the markdown mirrors from both,
 so the mirrors cannot drift from the pages.
 
-Run after any edit to index.html or dementia.html:  python gen_mirrors.py
+Run after any edit to index.html, same-atoms.html, or dementia.html:
+    python gen_mirrors.py
 """
 
 from __future__ import annotations
@@ -107,12 +108,13 @@ def write_twin(name: str, body: str) -> None:
 
 def main() -> None:
     index = (ROOT / "index.html").read_text(encoding="utf-8")
+    same_atoms = (ROOT / "same-atoms.html").read_text(encoding="utf-8")
     dementia = (ROOT / "dementia.html").read_text(encoding="utf-8")
 
     terps = parse_entries(index, "TERPS")
     flavs = parse_entries(index, "FLAVS")
-    chiral = parse_entries(index, "CHIRAL")
-    cannab = parse_entries(index, "CANNAB")
+    chiral = parse_entries(same_atoms, "CHIRAL")
+    cannab = parse_entries(same_atoms, "CANNAB")
 
     body = [preamble(f"{BASE}/", "The aroma molecules of cannabis: a terpene atlas.")]
     body.extend(prose_backbone(index))
@@ -146,7 +148,7 @@ def main() -> None:
     (ROOT / "llms-full.txt").write_text(full, encoding="utf-8", newline="\n")
     (ROOT / "full_site.txt").write_text(full, encoding="utf-8", newline="\n")
 
-    print(f"mirrors written: index.md ({len(terps)} terpenes, {len(flavs)} flavorants, {len(chiral)} enantiomers, {len(cannab)} cannabinoids), dementia.md, llms-full.txt")
+    print(f"mirrors written: index.md ({len(terps)} terpenes, {len(flavs)} flavorants), same-atoms.md ({len(chiral)} enantiomers, {len(cannab)} cannabinoids), dementia.md, llms-full.txt")
 
 
 if __name__ == "__main__":

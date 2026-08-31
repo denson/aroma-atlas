@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="author" content="Denson Smith"/>
+<title>Same atoms, different effects — cannabis isomers</title>
+<link rel="alternate" type="text/markdown" href="same-atoms.md" title="Markdown version">
+<script src="3Dmol-min.js"></script>
+<style>
+  /* Typography and palette match colorado-medical-cannabis.org (same desk).
+     Both font families are SIL OFL 1.1; license texts in ./fonts/licenses/. */
+  @font-face{font-family:"Newsreader";font-style:normal;font-weight:200 800;font-display:swap;
+    src:local("Newsreader"),url("fonts/newsreader-latin-variable.woff2") format("woff2");}
+  @font-face{font-family:"Atkinson Hyperlegible Next";font-style:normal;font-weight:200 800;font-display:swap;
+    src:local("Atkinson Hyperlegible Next"),url("fonts/atkinson-hyperlegible-next-latin-variable.woff2") format("woff2");}
+  :root{
+    --paper:#f8eed9; --ink:#33232d; --muted:rgba(51,35,45,.62); --line:rgba(51,35,45,.24);
+    --accent:#5c243f; --evergreen:#21423b; --ochre:#a27728;
+    --font:"Newsreader",Georgia,"Times New Roman",serif;
+    --ui:"Atkinson Hyperlegible Next","Segoe UI",Arial,sans-serif;
+    --citrus:#E0A400; --pine:#3f9d52; --floral:#9b5cc9; --earthy:#a9742f; --pepper:#c2410c; --hoppy:#b8860b; --herbal:#4aa39a; --woody:#8a6d52;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:18px;line-height:1.6;}
+  .sheet{max-width:900px;margin:26px auto;background:transparent;border:none;border-radius:0;padding:38px 44px 52px;box-shadow:none;}
+  @media(max-width:560px){.sheet{padding:22px 18px;margin:10px;}}
+  h1{font-size:40px;line-height:1.05;margin:0 0 8px;letter-spacing:-.025em;}
+  .dek{color:var(--muted);font-size:19px;margin:0 0 4px;} .by{color:var(--muted);font-family:var(--ui);font-size:12.5px;margin:0;}
+  h2{font-size:27px;margin:34px 0 8px;letter-spacing:-.015em;line-height:1.1;}
+  h3{font-size:19px;margin:22px 0 6px;}
+  p{margin:11px 0;} a{color:var(--accent);text-decoration:underline;text-underline-offset:.18em;} a:hover{color:var(--evergreen);}
+  .frame{background:rgba(255,255,255,.35);border:2px solid var(--ink);border-radius:10px;padding:11px 15px;font-family:var(--ui);font-size:13px;color:var(--ink);margin:14px 0;}
+  .note{background:rgba(255,255,255,.3);border:1px solid var(--line);border-left:4px solid var(--ochre);border-radius:0 8px 8px 0;padding:11px 15px;font-size:14.5px;color:var(--ink);margin:16px 0;}
+  .iso{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0;}
+  .chip{border-radius:8px;padding:8px 12px;font-family:var(--ui);font-size:12.5px;color:#fff;font-weight:600;line-height:1.25;}
+  .chip small{display:block;font-weight:400;opacity:.92;font-size:11px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:12px;margin:14px 0;}
+  .card{border:1px solid var(--line);border-radius:10px;padding:13px 15px;border-left-width:4px;}
+  .card h3{margin:0;font-size:17px;} .card .id{font-size:11.5px;color:var(--muted);font-family:ui-monospace,Menlo,monospace;margin:2px 0 6px;}
+  .card .klass{font-size:15px;margin:0 0 1px;} .card .molname{font-family:var(--ui);font-size:12.5px;font-weight:600;color:var(--ink);margin:0 0 2px;}
+  .mol{width:100%;height:158px;position:relative;border:1px solid var(--line);border-radius:7px;background:#fff;overflow:hidden;}
+  .molna{font-size:11.5px;color:var(--muted);text-align:center;padding-top:64px;}
+  .card .aroma{font-family:var(--ui);font-size:13px;font-weight:600;margin:7px 0 3px;} .card .src{font-size:13.5px;color:var(--ink);margin:0;}
+  .molhint{font-size:11.5px;color:var(--muted);margin:2px 0 0;}
+  .figart{margin:22px 0 18px;}
+  .figart img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px;}
+  .figart .molhint{text-align:center;max-width:78ch;margin:10px auto 0;line-height:1.45;}
+  @media(max-width:560px){.figart{margin:18px 0;} .figart .molhint{font-size:14px;text-align:left;}}
+  .ctl{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:9px 0 4px;font-family:var(--ui);font-size:12.5px;}
+  .ctl .ctl-label{color:var(--muted);margin-right:2px;}
+  .ctl button{font-family:var(--ui);font-size:12px;border:1px solid var(--line);background:rgba(255,255,255,.5);color:var(--ink);border-radius:7px;padding:5px 11px;cursor:pointer;}
+  .ctl button:hover{border-color:var(--ink);}
+  .ctl button.active{border-color:var(--evergreen);background:var(--evergreen);font-weight:600;color:var(--paper);}
+  .ctl .ctl-sep{width:1px;height:18px;background:var(--line);margin:0 4px;}
+  .star{background:rgba(255,255,255,.35);border:1px solid var(--line);border-left:4px solid var(--pepper);border-radius:0 10px 10px 0;padding:13px 16px;margin:14px 0;}
+  .warnbox{background:rgba(255,255,255,.3);border:1px solid var(--line);border-left:3px solid var(--pepper);border-radius:0 8px 8px 0;padding:11px 15px;font-size:14.5px;margin:14px 0;}
+  .mod{border:1px solid var(--line);border-radius:9px;padding:10px 13px;border-left-width:4px;margin:8px 0;}
+  .mod h4{margin:0 0 2px;font-size:15px;} .mod .m-aroma{font-family:var(--ui);font-size:12.5px;font-weight:600;} .mod p{margin:4px 0 0;font-size:13.5px;color:var(--ink);}
+  .xform{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:7px 0;font-family:var(--ui);font-size:12.5px;}
+  .xf{padding:4px 9px;border-radius:7px;background:rgba(255,255,255,.5);} .xf.add{background:rgba(162,119,40,.16);color:#7a5514;} .xf.res{font-weight:600;background:rgba(33,66,59,.12);}
+  .arrow{color:var(--muted);} .up{color:#2f6d33;font-weight:700;} .down{color:#a12b33;font-weight:700;} .mix{color:#7a5514;font-weight:700;}
+  ul{margin:9px 0;padding-left:20px;} li{margin:6px 0;font-size:15px;}
+  .foot{margin-top:28px;border-top:1px solid var(--line);padding-top:14px;color:var(--muted);font-family:var(--ui);font-size:12px;}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <h1>Same atoms, different smells — different effects</h1>
+<div style="background:rgba(128,128,128,.12);border:1px solid rgba(128,128,128,.35);border-radius:10px;padding:14px;max-width:62ch;margin:1.2em 0;display:flex;flex-wrap:wrap;gap:10px;align-items:stretch"><label for="ai-paste" style="flex:1 1 100%;font-size:.75em;letter-spacing:.05em;text-transform:uppercase;opacity:.75">For your AI assistant</label><textarea id="ai-paste" readonly rows="2"  style="flex:1 1 240px;font:400 16px/1.5 ui-monospace,monospace;background:transparent;color:inherit;border:1px solid rgba(128,128,128,.35);border-radius:6px;padding:10px 12px;resize:none;field-sizing:content;overflow:hidden">Tell me about this site: https://denson.github.io/aroma-atlas/full_site.txt</textarea><button type="button" id="ai-copy" hidden style="font-weight:700;font-size:1em;border:2px solid currentColor;border-radius:6px;background:transparent;color:inherit;padding:0 20px;min-height:48px;cursor:pointer">Copy</button></div>
+
+  <p class="dek">One formula can be spearmint or caraway. One formula can be CBD, Δ⁹, or Δ⁸. Arrangement decides.</p>
+  <p class="by">author: Denson Smith · part of <a href="./">the aroma molecules of cannabis</a></p>
+
+  <h2>Same atoms, different smell</h2>
+  <p>The first thing the chemistry tells you: five of these terpenes are the <b>same molecule by formula</b> —
+  <code>C₁₀H₁₆</code>, 136.23 g/mol, the identical sixteen atoms — yet they smell nothing alike. The aroma lives in
+  the <b>shape</b>, not the formula (rotate them on <a href="./">the atlas page</a> and you'll see how differently those same atoms are arranged).</p>
+  <div class="iso">
+    <span class="chip" style="background:var(--earthy)">Myrcene<small>C₁₀H₁₆ · earthy</small></span>
+    <span class="chip" style="background:var(--citrus)">Limonene<small>C₁₀H₁₆ · citrus</small></span>
+    <span class="chip" style="background:var(--pine)">α-Pinene<small>C₁₀H₁₆ · pine</small></span>
+    <span class="chip" style="background:var(--pine)">β-Pinene<small>C₁₀H₁₆ · pine</small></span>
+    <span class="chip" style="background:var(--herbal)">Terpinolene<small>C₁₀H₁₆ · complex</small></span>
+    <span class="chip" style="background:var(--herbal)">Ocimene<small>C₁₀H₁₆ · sweet-herbal</small></span>
+  </div>
+  <p>The two heavier ones are likewise twins: <b>β-caryophyllene</b> (peppery) and <b>humulene</b> (hoppy) are both
+  <code>C₁₅H₂₄</code> — humulene is α-caryophyllene, a structural isomer. One of them — β-caryophyllene — is also a drug: not a cannabinoid, but a terpene
+  found across other plants that happens to bind a cannabinoid receptor — a thread
+  <a href="./">the atlas page</a> follows to the clinic.</p>
+
+  <h3>The mirror twist: same atoms, same bonds, opposite hands</h3>
+  <p>It goes one step further. Two molecules can share the formula <i>and</i> the entire bond map and still differ
+  the way your left hand differs from your right: mirror images that no rotation can superimpose (chemists call them
+  <b>enantiomers</b>). Your nose tells them apart, because smell receptors are proteins, and proteins are themselves
+  built one-handed — a mirror-image molecule docks into them differently. The textbook pair is <b>carvone</b>,
+  <code>C₁₀H₁₄O</code>: the R hand is the smell of <b>spearmint</b>; its mirror image, the S hand, is <b>caraway and
+  dill</b>. Rotate them below — every bond length and angle matches, and they will never line up.</p>
+  <div id="chiralgrid" class="grid"></div>
+  <p>Limonene has hands too: the bright orange-peel citrus people mean by "limonene" is the R hand,
+  <a href="https://pubchem.ncbi.nlm.nih.gov/compound/440917">(+)-limonene</a> — the form the Johns Hopkins anxiety
+  trial dosed — while its mirror, <a href="https://pubchem.ncbi.nlm.nih.gov/compound/439250">(−)-limonene</a>, reads
+  harsher: lemon-pine edging toward turpentine. (The atlas page's limonene card uses PubChem's hand-unspecified
+  record; the citrus description belongs to the R hand.)</p>
+
+  <h2>Smell was an effect on your brain all along</h2>
+  <p>Stop and notice what "smelling" actually is: a molecule leaves the jar, docks into receptor proteins in your
+  nose, they fire, and your brain renders the signal as spearmint or skunk. <b>Smell is already a biological
+  effect — a molecule changing the state of your nervous system — and shape decided it every time.</b> (That is
+  the grain of truth underneath aromatherapy, and this page treads carefully there: an inhaled molecule doing
+  <i>something</i> to a brain is plain physiology, but the healing claims marketed under that name run far ahead
+  of the evidence, and nothing below leans on them.) So the switch this section marks is not from no-effect to
+  effect. It is from receptors in the nose to receptors everywhere else: from here on, this page follows
+  <b>cannabis's own compounds</b> past the nose and into the body, where the same rule — <b>shape decides
+  effect</b> — carries higher stakes and substantial evidence.</p>
+
+  <figure class="figart">
+    <img src="images/smell-path-carvone.webp" width="2048" height="1152" loading="lazy" decoding="async"
+      alt="Three-lane diagram. (R)-(-)-carvone, drawn as a green puzzle piece, leaves its jar and snaps into the matching pocket on a receptor board; a signal reaches the brain, which reads spearmint. (S)-(+)-carvone, the same piece mirror-flipped in ochre, fits only its own mirrored pocket, and the brain reads caraway/dill. Smelled together, each piece fits its own pocket and the brain reads both words at once - spearmint plus caraway/dill - not a new third smell.">
+    <p class="molhint">Illustration, not data: carvone's two hands drawn as mirror-image puzzle pieces. Each fits only
+    its own receptor pocket — the (R)-(&#8722;) hand reads as spearmint, the (S)-(+) hand as caraway/dill — and smelled
+    together, both qualities are perceived at once, not a new third smell
+    (<a href="https://academic.oup.com/chemse/article/13/2/307/455642">Pike, Enns &amp; Hornung 1988</a>).</p>
+  </figure>
+
+  <p>The textbook case:
+  <a href="https://pubchem.ncbi.nlm.nih.gov/compound/16078">Δ⁹-THC</a>,
+  <a href="https://pubchem.ncbi.nlm.nih.gov/compound/644019">CBD</a>, and
+  <a href="https://pubchem.ncbi.nlm.nih.gov/compound/638026">Δ⁸-THC</a> all share one formula,
+  <code>C₂₁H₃₀O₂</code>, 314.5 g/mol — the identical fifty-three atoms — yet THC's shape fits the brain's CB1
+  receptor and intoxicates, CBD's shape barely engages CB1 and doesn't, and moving a single double bond turns
+  Δ⁹ into Δ⁸, with a noticeably milder high. As cannabis pharmacology goes, this is about as uncontroversial as
+  it gets — though notice who quarrels with "milder": mostly the people selling Δ⁸. Worth knowing about what they
+  sell: Δ⁸ barely occurs in the plant — nearly all of it is made by taking hemp CBD and closing its open ring with
+  acid, the same fifty-three atoms rearranged on purpose — and as of this page's writing Colorado bars making or
+  selling it as a hemp product. The heart of that caution is time. Naturally occurring Δ⁹, with the plant's other
+  compounds, carries literally millennia of medical, religious, and recreational human use: its long-term harms
+  are real, but they are known, studied, and manageable. Δ⁸ at intoxicating doses is a recently human-produced
+  exposure, only a few years wide — nobody can yet say what its long-term effects are, so nobody can manage them.
+  (Sources and the current-law caveats are in this page's machine-readable appendix.) Rotate all three — and
+  notice how hard the differences are to spot in the real structures. Carvone's two hands are an obvious mirror;
+  these three differ in how the same parts are wired together, which is what the drawing below untangles:</p>
+  <div id="cannabgrid" class="grid"></div>
+
+  <figure class="figart">
+    <img src="images/cannabinoid-assemblies.webp" width="2048" height="1152" loading="lazy" decoding="async"
+      alt="Three necklace-like diagrams built from identical beads: CBD with its second loop hanging open; delta-9-THC fully closed with a double link beside the loop junction; delta-8-THC fully closed with the same double link moved along the loop. Below, a conversion: CBD plus a drop of acid becomes delta-8 - the open loop closes and the double link settles into a new spot.">
+    <p class="molhint">Illustration, not data — and beads are not atoms: the drawing shows the kind of difference,
+    not the count. CBD is the open-loop assembly; Δ⁹ and Δ⁸ differ by one moved double bond; and closing CBD's open
+    loop with acid is how commercial Δ⁸ is made.</p>
+  </figure>
+
+  <p>And nothing in a jar arrives as one molecule. What reaches you is a <b>blend</b> — cannabinoids setting the
+  core effect, terpenes and trace flavorants riding along — and the blend differs jar to jar. Here's what should
+  not be controversial: <b>co-administered biologically active compounds changing each other's overall effect is
+  ordinary pharmacology</b>, demonstrated every day outside cannabis. Alcohol taken alongside opioid painkillers
+  potentiates them — sedation and suppressed breathing — to the point of a boxed warning on the opioid label. A
+  glass of orange juice taken with Allegra cuts the antihistamine's absorption so sharply that the label tells you
+  not to take it with fruit juice. Interaction between active compounds is the rule, not the exception. So the open
+  question for cannabis was never <i>whether</i> an entourage effect can exist. It is <i>which</i> combinations do
+  what, at the doses a flower actually delivers — shaping what a product does for a medical condition and what the
+  high feels like recreationally. Where that evidence stands — what is proven, what is still promise, and the one
+  pairing with human RCT support — is laid out honestly in <a href="./#entourage">the atlas page's entourage section</a>.</p>
+
+  <figure class="figart">
+    <img src="images/entourage-ordinary.webp" width="2048" height="1152" loading="lazy" decoding="async"
+      alt="Two panels. Left: a wine glass plus a prescription oxycodone bottle leads to a boxed warning - alcohol makes opioid painkillers stronger. Right: a glass of orange juice plus an allergy capsule leads to the same capsule faded with a downward arrow - absorption reduced; the label says take it with water instead.">
+    <p class="molhint">Combination effects are ordinary pharmacology: alcohol potentiates opioid painkillers to the
+    point of a boxed warning, and orange juice cuts a common antihistamine's absorption enough that its label says to
+    take it with water. The question was never <i>whether</i> molecules interact — only which combinations do what.</p>
+  </figure>
+
+  <div class="foot">PubChem (identity + 3D structures) · sources linked inline. Chemical identities are exact.
+  Denson Smith. 3D viewer: 3Dmol.js.
+  The atlas: <a href="./">the aroma molecules of cannabis</a> ·
+  From the same desk: <a href="https://colorado-medical-cannabis.org/">colorado-medical-cannabis.org</a>.</div>
+</div>
+
+<script>
+const CHIRAL = [
+  {n:"(R)-(−)-carvone", cid:439570, f:"C₁₀H₁₄O", mw:"150.22", aroma:"Spearmint", col:"herbal", src:"The main aroma of spearmint oil. The mirror image of the molecule beside it."},
+  {n:"(S)-(+)-carvone", cid:16724, f:"C₁₀H₁₄O", mw:"150.22", aroma:"Caraway, dill", col:"earthy", src:"The smell of caraway seed and dill. Same atoms, same bonds as spearmint's carvone — opposite hand."}
+];
+const CANNAB = [
+  {n:"Δ⁹-THC", cid:16078, f:"C₂₁H₃₀O₂", mw:"314.5", aroma:"Fits CB1 · the intoxication", col:"pepper", src:"The main psychoactive cannabinoid: a partial agonist at the brain's CB1 receptor. Its shape is the high."},
+  {n:"CBD", cid:644019, f:"C₂₁H₃₀O₂", mw:"314.5", aroma:"Barely engages CB1 · non-intoxicating", col:"pine", src:"Same formula as THC, different shape: low CB1 affinity, no high — the whole difference is arrangement."},
+  {n:"Δ⁸-THC", cid:638026, f:"C₂₁H₃₀O₂", mw:"314.5", aroma:"Fits CB1 weaker · milder high", col:"hoppy", src:"One double bond moved relative to Δ⁹ — same formula, noticeably weaker intoxication."}
+];
+const COLORS = {earthy:"#a9742f",citrus:"#E0A400",pine:"#3f9d52",floral:"#9b5cc9",pepper:"#c2410c",hoppy:"#b8860b",herbal:"#4aa39a",woody:"#8a6d52"};
+const STYLES = { ballstick:{stick:{radius:0.13},sphere:{scale:0.22}}, stick:{stick:{radius:0.15}}, sphere:{sphere:{}}, line:{line:{}} };
+let curStyle='ballstick', spinning=false;
+const VIEWERS = [];
+
+function renderGrid(arr, gridEl, prefix){
+  arr.forEach((t,i)=>{
+    const c = COLORS[t.col] || t.col;
+    const card = document.createElement('div');
+    card.className='card'; card.style.borderLeftColor=c;
+    const head = t.klass
+      ? '<h3 class="klass" style="color:'+c+'">'+t.klass+'</h3><div class="molname">'+t.n+'</div>'
+      : '<h3>'+t.n+(t.star?' ★':'')+'</h3>';
+    card.innerHTML = head +
+      '<div class="id">PubChem CID '+t.cid+' · '+t.f+' · '+t.mw+'</div>'+
+      '<div class="mol" id="'+prefix+i+'"></div>'+
+      '<p class="aroma" style="color:'+c+'">'+t.aroma+'</p>'+
+      '<p class="src">'+t.src+'</p>';
+    gridEl.appendChild(card);
+  });
+}
+// Browsers cap live WebGL contexts (~16 in Chrome). The page has 21
+// molecules; creating all viewers eagerly silently killed the oldest
+// five contexts — the carvone pair and the cannabinoid trio. Viewers
+// are therefore created only near the viewport and released (context
+// and all) once they scroll far away; LIVE tracks the working set.
+const LIVE = new Map();
+const VISIBLE = new Set();
+function unloadMol(el){
+  const rec = LIVE.get(el); if(!rec) return;
+  const i = VIEWERS.indexOf(rec.v); if(i >= 0) VIEWERS.splice(i, 1);
+  try{
+    const c = el.querySelector('canvas');
+    if(c){ const gl = c.getContext('webgl') || c.getContext('experimental-webgl');
+           const x = gl && gl.getExtension('WEBGL_lose_context'); if(x) x.loseContext(); }
+  }catch(e){}
+  el.innerHTML = '';
+  LIVE.delete(el);
+}
+function loadMol(el, cid){
+  if (LIVE.has(el)) return;
+  if (LIVE.size >= 12){
+    for (const old of LIVE.keys()){ if (!VISIBLE.has(old)){ unloadMol(old); break; } }
+  }
+  let v;
+  try{ v = $3Dmol.createViewer(el, {backgroundColor:'white'}); }
+  catch(e){ el.innerHTML='<div class="molna">3D unavailable</div>'; return; }
+  VIEWERS.push(v);
+  LIVE.set(el, {v: v});
+  // Structures are snapshots of PubChem's records, served with the page
+  // (sdf/<cid>.sdf, refreshed by fetch_sdf.py) so a page view never
+  // depends on PubChem being up or unthrottled. PubChem stays as the
+  // fallback for a missing local file.
+  const remote = 'https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/'+cid+'/SDF?record_type=';
+  const grab = (url)=> fetch(url).then(r=>{ if(!r.ok) throw r.status; return r.text(); }).then(sdf=>{
+    if(!sdf || sdf.indexOf('$$$$') < 0) throw 'empty';
+    v.addModel(sdf, 'sdf'); v.setStyle({}, STYLES[curStyle]); v.zoomTo(); if(spinning) v.spin('y'); v.render();
+  });
+  grab('sdf/'+cid+'.sdf')
+    .catch(()=>grab(remote+'3d'))
+    .catch(()=>grab(remote+'2d'))
+    .catch(()=>{
+      const i = VIEWERS.indexOf(v); if(i >= 0) VIEWERS.splice(i, 1);
+      LIVE.delete(el);
+      el.innerHTML='<div class="molna">structure unavailable</div>';
+    });
+}
+function applyStyle(key){
+  curStyle = key;
+  VIEWERS.forEach(v=>{ try{ v.setStyle({}, STYLES[key]); v.render(); }catch(e){} });
+  document.querySelectorAll('#ctl button[data-style]').forEach(b=>b.classList.toggle('active', b.dataset.style===key));
+}
+function toggleSpin(){
+  spinning = !spinning;
+  VIEWERS.forEach(v=>{ try{ v.spin(spinning ? 'y' : false); }catch(e){} });
+  const b = document.getElementById('spinbtn'); if(b) b.classList.toggle('active', spinning);
+}
+function wireControls(){
+  document.querySelectorAll('#ctl button[data-style]').forEach(b=> b.onclick = ()=>applyStyle(b.dataset.style));
+  const sb = document.getElementById('spinbtn'); if(sb) sb.onclick = toggleSpin;
+}
+function initViewers(){
+  wireControls();
+  if (typeof $3Dmol === 'undefined') {
+    document.querySelectorAll('.mol').forEach(el=> el.innerHTML='<div class="molna">3D viewer failed to load</div>');
+    return;
+  }
+  const all = [];
+  CHIRAL.forEach((t,i)=> all.push({id:'chiral'+i, cid:t.cid}));
+  CANNAB.forEach((t,i)=> all.push({id:'cannab'+i, cid:t.cid}));
+  const els = [];
+  all.forEach(m=>{ const el = document.getElementById(m.id); if(el){ el.dataset.cid = m.cid; els.push(el); } });
+  if (!('IntersectionObserver' in window)) {
+    els.forEach((el,i)=> setTimeout(()=>loadMol(el, el.dataset.cid), i*30));
+    return;
+  }
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(en=>{
+      if (en.isIntersecting){ VISIBLE.add(en.target); loadMol(en.target, en.target.dataset.cid); }
+      else { VISIBLE.delete(en.target); unloadMol(en.target); }
+    });
+  }, {rootMargin:'400px 0px 400px 0px'});
+  els.forEach(el=> io.observe(el));
+}
+renderGrid(CHIRAL, document.getElementById('chiralgrid'), 'chiral');
+renderGrid(CANNAB, document.getElementById('cannabgrid'), 'cannab');
+if (document.readyState === 'complete') initViewers();
+else window.addEventListener('load', initViewers);
+</script>
+<p style="font-size:.85em;opacity:.8;max-width:70ch">Every page here has a markdown twin; this page's is <a href="https://denson.github.io/aroma-atlas/same-atoms.md">https://denson.github.io/aroma-atlas/same-atoms.md</a> (also served with .txt appended), carrying everything the 3D viewers show, as text. <a href="https://denson.github.io/aroma-atlas/llms.txt">https://denson.github.io/aroma-atlas/llms.txt</a> describes how the record is organized.</p>
+<script>document.addEventListener("DOMContentLoaded",function(){var b=document.getElementById("ai-copy"),t=document.getElementById("ai-paste");if(!b||!t)return;b.hidden=false;function d(){b.textContent="Copied";setTimeout(function(){b.textContent="Copy"},2000)}function f(){t.focus();t.select();try{document.execCommand("copy");d()}catch(e){}}b.addEventListener("click",function(){if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t.value).then(d,f)}else{f()}});function az(){t.style.height="auto";t.style.height=t.scrollHeight+"px"}az();window.addEventListener("resize",az);t.addEventListener("focus",function(){t.select()})});</script>
+</body>
+</html>

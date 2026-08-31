@@ -14,13 +14,16 @@ How the record is organized:
 - The whole site as one plain-text file, one fetch:
   https://denson.github.io/aroma-atlas/llms-full.txt
 
-- The atlas as text, all compounds as data:
+- The atlas as text, terpenes and flavorants as data:
   https://denson.github.io/aroma-atlas/index.md
+- The same-atoms story (isomers, the carvone hands, the cannabinoid trio):
+  https://denson.github.io/aroma-atlas/same-atoms.md
 - The cannabis-and-dementia citation analysis:
   https://denson.github.io/aroma-atlas/dementia.md
 - The site guide: https://denson.github.io/aroma-atlas/llms.txt
 - The human pages (live 3D structures):
-  https://denson.github.io/aroma-atlas/ and
+  https://denson.github.io/aroma-atlas/,
+  https://denson.github.io/aroma-atlas/same-atoms.html and
   https://denson.github.io/aroma-atlas/dementia.html
 
 Mirrors are also served with .txt appended, for tools that refuse

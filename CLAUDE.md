@@ -32,7 +32,7 @@ Never `git checkout beadwork` from the main worktree. Push tickets separately fr
 
 ## Site rules
 
-Legacy GitHub Pages serves the repo root directly; there is no build step and no CI. After ANY edit to `index.html` or `dementia.html`, run `python gen_mirrors.py` and commit the regenerated mirrors (`index.md`, `dementia.md`, their `.txt` twins, `llms-full.txt`, `full_site.txt`). JavaScript is enhancement only: everything the 3D viewers show must also exist as text in the mirrors. The agent-facing laws are in `denson/stoagen-com` at `docs/building-agent-friendly-sites.md`.
+Legacy GitHub Pages serves the repo root directly; there is no build step and no CI. After ANY edit to `index.html`, `same-atoms.html`, or `dementia.html`, run `python gen_mirrors.py` and commit the regenerated mirrors (`index.md`, `same-atoms.md`, `dementia.md`, their `.txt` twins, `llms-full.txt`, `full_site.txt`). JavaScript is enhancement only: everything the 3D viewers show must also exist as text in the mirrors. The agent-facing laws are in `denson/stoagen-com` at `docs/building-agent-friendly-sites.md`.
 
 The 3D structures are LOCAL snapshots of PubChem's SDF records in `sdf/<cid>.sdf`, served with the page (PubChem is fallback only — a live page view must never depend on PubChem being up or unthrottled). `3Dmol-min.js` is vendored for the same reason. When adding a molecule, add its CID to the `CIDS` list in `fetch_sdf.py` and run it; run it occasionally anyway to pick up PubChem record corrections (it prints CHANGED on a diff). The typography and palette match colorado-medical-cannabis.org (fonts self-hosted in `fonts/`, both OFL).
 
