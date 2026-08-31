@@ -102,7 +102,9 @@
   <b>enantiomers</b>). Your nose tells them apart, because smell receptors are proteins, and proteins are themselves
   built one-handed — a mirror-image molecule docks into them differently. The textbook pair is <b>carvone</b>,
   <code>C₁₀H₁₄O</code>: the R hand is the smell of <b>spearmint</b>; its mirror image, the S hand, is <b>caraway and
-  dill</b>. Rotate them below — every bond length and angle matches, and they will never line up.</p>
+  dill</b>. Below, the pair turns in opposite directions so the two stay perfect mirror images of each
+  other as they move — watch the red oxygen. Drag either one: every bond length and angle matches, and they
+  will never line up.</p>
   <div id="chiralgrid" class="grid"></div>
   <p>Limonene has hands too: the bright orange-peel citrus people mean by "limonene" is the R hand,
   <a href="https://pubchem.ncbi.nlm.nih.gov/compound/440917">(+)-limonene</a> — the form the Johns Hopkins anxiety
@@ -302,6 +304,11 @@ function loadMol(el, cid){
   const grab = (url)=> fetch(url).then(r=>{ if(!r.ok) throw r.status; return r.text(); }).then(sdf=>{
     if(!sdf || sdf.indexOf('$$$$') < 0) throw 'empty';
     v.addModel(sdf, 'sdf'); v.setStyle({}, STYLES[curStyle]); v.zoomTo(); if(spinning) v.spin('y'); v.render();
+    // The carvone pair counter-rotates: the two structures are mirror
+    // images across y, and opposite spins about x keep them exact
+    // mirrors of each other at every instant - the hands turn palm to palm.
+    const sp = parseFloat(el.dataset.spin || '');
+    if (sp) v.spin('x', sp);
   });
   grab('sdf/'+cid+'.sdf')
     .catch(()=>grab(remote+'3d'))
@@ -350,6 +357,8 @@ function initViewers(){
   els.forEach(el=> io.observe(el));
 }
 renderGrid(CHIRAL, document.getElementById('chiralgrid'), 'chiral');
+document.getElementById('chiral0').dataset.spin = '0.35';
+document.getElementById('chiral1').dataset.spin = '-0.35';
 renderGrid(CANNAB, document.getElementById('cannabgrid'), 'cannab');
 if (document.readyState === 'complete') initViewers();
 else window.addEventListener('load', initViewers);
