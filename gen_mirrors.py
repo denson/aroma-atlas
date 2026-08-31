@@ -58,11 +58,11 @@ def prose_backbone(source: str) -> list[str]:
         r'<div class="(?:frame|note|star|warnbox|xform)"[^>]*>(.*?)</div>',
         lambda m: "<p>" + m.group(1) + "</p>", source, flags=re.S)
     lines = []
-    for tag, content in re.findall(r"<(h1|h2|h3|h4|p|li|summary)\b[^>]*>(.*?)</\1>", source, re.S):
+    for tag, content in re.findall(r"<(h1|h2|h3|h4|p|li|summary|figcaption)\b[^>]*>(.*?)</\1>", source, re.S):
         text = strip_tags(content)
         if not text:
             continue
-        prefix = {"h1": "# ", "h2": "## ", "h3": "### ", "h4": "#### ", "li": "- ", "p": "", "summary": "### "}[tag]
+        prefix = {"h1": "# ", "h2": "## ", "h3": "### ", "h4": "#### ", "li": "- ", "p": "", "summary": "### ", "figcaption": ""}[tag]
         lines.append(prefix + text)
     return lines
 

@@ -14,7 +14,7 @@
 # The atlas — terpenes and flavorants
 Every terpene and flavorant in the corpus, rotatable in 3D — with the clinic thread and the entourage evidence.
 author: Denson Smith · part of [The aroma molecules of cannabis](./)
-How this was made. The molecules were resolved through PubChem (identity — CID, formula, weight, and the live 3D structures), the science pulled from OpenAlex, the non-terpene "flavorant" literature (Oswald et al.) verified against CrossRef, and the aroma descriptors / interaction effects from grounded web search. The interactive 3D structures are snapshots of PubChem's records served with this page and rendered by 3Dmol.js, so the whole page works without any third-party request; the snapshots are re-checked against PubChem occasionally.
+Where the data comes from. Every card's identity — CID, formula, weight, and the live 3D structure — is PubChem's record for that compound, served with this page and rendered by 3Dmol.js, so nothing here depends on a third-party request. The full method note is on [the story page](./).
 ## The atlas — the terpenes
 Each card carries the live PubChem 3D structure — drag to rotate, scroll to zoom. Use the controls to change representation or spin them all. The colors are chemistry's standard code: gray spheres are carbon, white are hydrogen, red is oxygen — and where they appear, yellow is sulfur and blue is nitrogen.
 ### How the 3D viewers work
