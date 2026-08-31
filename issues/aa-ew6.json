@@ -2,13 +2,14 @@
   "assignee": "",
   "blocked_by": [],
   "blocks": [],
+  "closed_at": "2026-08-31T02:26:40Z",
   "created": "2026-08-31T02:15:49Z",
   "description": "Per Denson (plan approved): swap page roles. index.html becomes the narrative front door (same atoms -\u003e mirror twist -\u003e flavorant smell-modification narrative w/ pineapple figure -\u003e hinge -\u003e cannabinoid trio -\u003e entourage framing; 5 viewers). New atlas.html = reference (terp cards + ctl, clinic, flavorant cards, entourage evidence, expert-end; 16 viewers). same-atoms.html becomes a redirect stub; same-atoms.md deleted, atlas.md added. gen_mirrors/llms.txt/start.md/sitemap/CLAUDE.md updated.",
   "id": "aa-ew6",
   "labels": [],
   "priority": 1,
-  "status": "open",
+  "status": "closed",
   "title": "Story-first restructure: index = the smell story, atlas.html = the reference",
   "type": "task",
-  "updated_at": "2026-08-31T02:15:49Z"
+  "updated_at": "2026-08-31T02:26:40Z"
 }
