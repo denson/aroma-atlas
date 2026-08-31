@@ -121,17 +121,24 @@ def main() -> None:
     body.append("")
     body.extend(compound_section("The terpenes, as data", terps))
     body.extend(compound_section("Beyond terpenes: the flavorants, as data", flavs))
-    body.extend(compound_section("The mirror pair (enantiomers), as data", chiral))
-    body.extend(compound_section("The cannabinoid isomers, as data", cannab))
+    write_twin("index.md", "\n\n".join([body[0]] + ["\n".join(body[1:])]))
+
+    sbody = [preamble(f"{BASE}/same-atoms.html",
+                      "Same atoms, different smells, different effects: isomers, enantiomers, and blends.")]
+    sbody.extend(prose_backbone(same_atoms))
+    sbody.append("")
+    sbody.extend(compound_section("The mirror pair (enantiomers), as data", chiral))
+    sbody.extend(compound_section("The cannabinoid isomers, as data", cannab))
     # Hand-authored back matter: appendix.md reaches the machine layer only,
-    # never the page. Sourced detail and dated legal caveats live there.
+    # never the page. Sourced detail and dated legal caveats live there
+    # (delta-8 chemistry and Colorado law - same-atoms subject matter).
     appendix_path = ROOT / "appendix.md"
     if appendix_path.is_file():
-        body.append("## Appendix: notes for readers' AI assistants (not on the page)")
-        body.append("")
-        body.append(appendix_path.read_text(encoding="utf-8").strip())
-        body.append("")
-    write_twin("index.md", "\n\n".join([body[0]] + ["\n".join(body[1:])]))
+        sbody.append("## Appendix: notes for readers' AI assistants (not on the page)")
+        sbody.append("")
+        sbody.append(appendix_path.read_text(encoding="utf-8").strip())
+        sbody.append("")
+    write_twin("same-atoms.md", "\n\n".join([sbody[0]] + ["\n".join(sbody[1:])]))
 
     dbody = [preamble(f"{BASE}/dementia.html",
                       "Cannabis and dementia: what the literature actually rests on.")]
@@ -142,6 +149,8 @@ def main() -> None:
         "# The aroma molecules of cannabis: Full Markdown Corpus\n\n"
         "> Concatenated machine-readable mirrors of every page.\n\n---\n\n"
         + (ROOT / "index.md").read_text(encoding="utf-8")
+        + "\n\n---\n\n"
+        + (ROOT / "same-atoms.md").read_text(encoding="utf-8")
         + "\n\n---\n\n"
         + (ROOT / "dementia.md").read_text(encoding="utf-8")
     )
