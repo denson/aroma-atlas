@@ -2,6 +2,7 @@
   "assignee": "unknown",
   "blocked_by": [],
   "blocks": [],
+  "closed_at": "2026-08-31T18:05:26Z",
   "created": "2026-08-31T17:28:29Z",
   "description": "Independent check (aa-rlc) found the dementia page's derived statistics (21 works cited by \u003e=3, 5/9, 4/9, 3-of-6-recent, 3-open/6-blocked) cannot be reproduced because the nine seed papers are not enumerated anywhere in the repo or site. Needs the original analysis artifacts from Denson's earlier session (compile-papers run, OpenAlex queries). When available: list the nine seeds in the machine-readable appendix or a data file, so every count on the page is recomputable.",
   "id": "aa-pny",
@@ -17,7 +18,7 @@
     }
   ],
   "priority": 2,
-  "status": "in_progress",
+  "status": "closed",
   "title": "Publish the nine seed papers of the dementia co-citation analysis",
   "type": "task",
   "updated_at": "2026-08-31T18:05:26Z"
