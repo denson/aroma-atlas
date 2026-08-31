@@ -15,11 +15,15 @@
     {
       "text": "Also added: reset-views button on both pages (rebuild-from-scratch via the viewer lifecycle; restores default pose, style, and the chiral counter-spin). Verified by scrambling a viewer and clicking reset on each page.",
       "timestamp": "2026-08-31T02:49:13Z"
+    },
+    {
+      "text": "Ladder rewrite on top of the restructure: story page now explicitly climbs carvone (simplest) -\u003e cannabis smell (blend complexity) -\u003e hinge -\u003e effects (complexity compounds), with named rungs and a closing thesis. Denson's passages verbatim; connective tissue new.",
+      "timestamp": "2026-08-31T02:59:15Z"
     }
   ],
   "priority": 1,
   "status": "closed",
   "title": "Story-first restructure: index = the smell story, atlas.html = the reference",
   "type": "task",
-  "updated_at": "2026-08-31T02:49:13Z"
+  "updated_at": "2026-08-31T02:59:15Z"
 }
