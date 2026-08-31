@@ -89,6 +89,7 @@
     <button data-style="line">Wireframe</button>
     <span class="ctl-sep"></span>
     <button id="spinbtn">⟳ Spin all</button>
+    <button id="resetbtn">⟲ Reset views</button>
   </div>
   <div id="terpgrid" class="grid"></div>
   <p class="note">Read the last line of every card: cannabis doesn't smell like cannabis so much as it smells like a
@@ -268,9 +269,17 @@ function toggleSpin(){
   VIEWERS.forEach(v=>{ try{ v.spin(spinning ? 'y' : false); }catch(e){} });
   const b = document.getElementById('spinbtn'); if(b) b.classList.toggle('active', spinning);
 }
+function resetViews(){
+  const els = [...document.querySelectorAll('.mol')].filter(e => e.dataset.cid);
+  els.forEach(el => unloadMol(el));
+  els.forEach(el => {
+    if (!('IntersectionObserver' in window) || VISIBLE.has(el)) loadMol(el, el.dataset.cid);
+  });
+}
 function wireControls(){
   document.querySelectorAll('#ctl button[data-style]').forEach(b=> b.onclick = ()=>applyStyle(b.dataset.style));
   const sb = document.getElementById('spinbtn'); if(sb) sb.onclick = toggleSpin;
+  const rb = document.getElementById('resetbtn'); if(rb) rb.onclick = resetViews;
 }
 function initViewers(){
   wireControls();
