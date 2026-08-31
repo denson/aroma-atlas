@@ -30,6 +30,10 @@
     {
       "text": "MIRROR-LAW finding - the checked-in mirrors regenerate byte-identically, but gen_mirrors.py still omits visible page content. index.md omits the six-item .iso strip, namely the C10H16 terpene and aroma chips. dementia.md omits all three .new blocks under section 2, the three visible Pillar tag labels, and the SVG timeline visible study and year labels; the figcaption is present but not the labels. Thus index.md and dementia.md are not supersets of their HTML pages, and the omissions propagate into both full-corpus files.",
       "timestamp": "2026-08-31T17:10:22Z"
+    },
+    {
+      "text": "CLEAN-CHECK summary - live bytes match main 374db04 for all three HTML pages, all mirrors, corpora, list files, and all five canonical WebPs. No dead three-lane Y-molecule figure exists among the five figures. All internal hrefs and anchors resolve; same-atoms.html is only a redirect and is absent from page lists; all DOI redirects and metadata match the claimed papers, with separate attribution findings above. full_site.txt is byte-identical to llms-full.txt; llms.txt, start.md, and sitemap list the real story, atlas, and dementia pages. Real-browser testing rendered all 21 viewers, 5 plus 16, at desktop and 390x844 with no fallback errors; near-viewport creation, far release, carvone opposite spin values and mirror behavior, drag and reset, and atlas reset with current style and spin all worked. The complexity-ladder prose reads continuously and the three HTML pages contain no leftover pre-split or same-atoms references.",
+      "timestamp": "2026-08-31T17:10:22Z"
     }
   ],
   "priority": 2,
