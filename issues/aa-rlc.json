@@ -14,6 +14,10 @@
     {
       "text": "FACT finding - index.html says the six C10H16 terpenes have the identical sixteen atoms. C10H16 contains 26 atoms total: 10 C plus 16 H, not 16. PubChem confirms all six listed compounds and CIDs have formula C10H16 and MW 136.23, so the six-isomer count and formula are right; only the total-atom statement is wrong.",
       "timestamp": "2026-08-31T17:09:55Z"
+    },
+    {
+      "text": "CITATION finding - index.html attributes DOI 10.1021/acsomega.4c03225 to Oswald et al., ACS Omega 2024. Crossref and ACS identify Twinkle R. Paryani as first author, with Oswald as last author: Paryani et al., Nonterpenoid Chemical Diversity of Cannabis Phenotypes Predicts Differentiated Aroma Characteristics, 2024. The DOI itself and the claimed subject are correct.",
+      "timestamp": "2026-08-31T17:09:55Z"
     }
   ],
   "priority": 2,
