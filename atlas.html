@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="author" content="Denson Smith"/>
+<title>The atlas — terpenes and flavorants of cannabis</title>
+<link rel="alternate" type="text/markdown" href="atlas.md" title="Markdown version">
+<script src="3Dmol-min.js"></script>
+<style>
+  /* Typography and palette match colorado-medical-cannabis.org (same desk).
+     Both font families are SIL OFL 1.1; license texts in ./fonts/licenses/. */
+  @font-face{font-family:"Newsreader";font-style:normal;font-weight:200 800;font-display:swap;
+    src:local("Newsreader"),url("fonts/newsreader-latin-variable.woff2") format("woff2");}
+  @font-face{font-family:"Atkinson Hyperlegible Next";font-style:normal;font-weight:200 800;font-display:swap;
+    src:local("Atkinson Hyperlegible Next"),url("fonts/atkinson-hyperlegible-next-latin-variable.woff2") format("woff2");}
+  :root{
+    --paper:#f8eed9; --ink:#33232d; --muted:rgba(51,35,45,.62); --line:rgba(51,35,45,.24);
+    --accent:#5c243f; --evergreen:#21423b; --ochre:#a27728;
+    --font:"Newsreader",Georgia,"Times New Roman",serif;
+    --ui:"Atkinson Hyperlegible Next","Segoe UI",Arial,sans-serif;
+    --citrus:#E0A400; --pine:#3f9d52; --floral:#9b5cc9; --earthy:#a9742f; --pepper:#c2410c; --hoppy:#b8860b; --herbal:#4aa39a; --woody:#8a6d52;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:18px;line-height:1.6;}
+  .sheet{max-width:900px;margin:26px auto;background:transparent;border:none;border-radius:0;padding:38px 44px 52px;box-shadow:none;}
+  @media(max-width:560px){.sheet{padding:22px 18px;margin:10px;}}
+  h1{font-size:40px;line-height:1.05;margin:0 0 8px;letter-spacing:-.025em;}
+  .dek{color:var(--muted);font-size:19px;margin:0 0 4px;} .by{color:var(--muted);font-family:var(--ui);font-size:12.5px;margin:0;}
+  h2{font-size:27px;margin:34px 0 8px;letter-spacing:-.015em;line-height:1.1;}
+  h3{font-size:19px;margin:22px 0 6px;}
+  p{margin:11px 0;} a{color:var(--accent);text-decoration:underline;text-underline-offset:.18em;} a:hover{color:var(--evergreen);}
+  .frame{background:rgba(255,255,255,.35);border:2px solid var(--ink);border-radius:10px;padding:11px 15px;font-family:var(--ui);font-size:13px;color:var(--ink);margin:14px 0;}
+  .note{background:rgba(255,255,255,.3);border:1px solid var(--line);border-left:4px solid var(--ochre);border-radius:0 8px 8px 0;padding:11px 15px;font-size:14.5px;color:var(--ink);margin:16px 0;}
+  .iso{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0;}
+  .chip{border-radius:8px;padding:8px 12px;font-family:var(--ui);font-size:12.5px;color:#fff;font-weight:600;line-height:1.25;}
+  .chip small{display:block;font-weight:400;opacity:.92;font-size:11px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:12px;margin:14px 0;}
+  .card{border:1px solid var(--line);border-radius:10px;padding:13px 15px;border-left-width:4px;}
+  .card h3{margin:0;font-size:17px;} .card .id{font-size:11.5px;color:var(--muted);font-family:ui-monospace,Menlo,monospace;margin:2px 0 6px;}
+  .card .klass{font-size:15px;margin:0 0 1px;} .card .molname{font-family:var(--ui);font-size:12.5px;font-weight:600;color:var(--ink);margin:0 0 2px;}
+  .mol{width:100%;height:158px;position:relative;border:1px solid var(--line);border-radius:7px;background:#fff;overflow:hidden;}
+  .molna{font-size:11.5px;color:var(--muted);text-align:center;padding-top:64px;}
+  .card .aroma{font-family:var(--ui);font-size:13px;font-weight:600;margin:7px 0 3px;} .card .src{font-size:13.5px;color:var(--ink);margin:0;}
+  .molhint{font-size:11.5px;color:var(--muted);margin:2px 0 0;}
+  .figart{margin:22px 0 18px;}
+  .figart img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px;}
+  .figart .molhint{text-align:center;max-width:78ch;margin:10px auto 0;line-height:1.45;}
+  @media(max-width:560px){.figart{margin:18px 0;} .figart .molhint{font-size:14px;text-align:left;}}
+  .ctl{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:9px 0 4px;font-family:var(--ui);font-size:12.5px;}
+  .ctl .ctl-label{color:var(--muted);margin-right:2px;}
+  .ctl button{font-family:var(--ui);font-size:12px;border:1px solid var(--line);background:rgba(255,255,255,.5);color:var(--ink);border-radius:7px;padding:5px 11px;cursor:pointer;}
+  .ctl button:hover{border-color:var(--ink);}
+  .ctl button.active{border-color:var(--evergreen);background:var(--evergreen);font-weight:600;color:var(--paper);}
+  .ctl .ctl-sep{width:1px;height:18px;background:var(--line);margin:0 4px;}
+  .star{background:rgba(255,255,255,.35);border:1px solid var(--line);border-left:4px solid var(--pepper);border-radius:0 10px 10px 0;padding:13px 16px;margin:14px 0;}
+  .warnbox{background:rgba(255,255,255,.3);border:1px solid var(--line);border-left:3px solid var(--pepper);border-radius:0 8px 8px 0;padding:11px 15px;font-size:14.5px;margin:14px 0;}
+  .mod{border:1px solid var(--line);border-radius:9px;padding:10px 13px;border-left-width:4px;margin:8px 0;}
+  .mod h4{margin:0 0 2px;font-size:15px;} .mod .m-aroma{font-family:var(--ui);font-size:12.5px;font-weight:600;} .mod p{margin:4px 0 0;font-size:13.5px;color:var(--ink);}
+  .xform{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:7px 0;font-family:var(--ui);font-size:12.5px;}
+  .xf{padding:4px 9px;border-radius:7px;background:rgba(255,255,255,.5);} .xf.add{background:rgba(162,119,40,.16);color:#7a5514;} .xf.res{font-weight:600;background:rgba(33,66,59,.12);}
+  .arrow{color:var(--muted);} .up{color:#2f6d33;font-weight:700;} .down{color:#a12b33;font-weight:700;} .mix{color:#7a5514;font-weight:700;}
+  ul{margin:9px 0;padding-left:20px;} li{margin:6px 0;font-size:15px;}
+  .foot{margin-top:28px;border-top:1px solid var(--line);padding-top:14px;color:var(--muted);font-family:var(--ui);font-size:12px;}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <h1>The atlas — terpenes and flavorants</h1>
+<div style="background:rgba(128,128,128,.12);border:1px solid rgba(128,128,128,.35);border-radius:10px;padding:14px;max-width:62ch;margin:1.2em 0;display:flex;flex-wrap:wrap;gap:10px;align-items:stretch"><label for="ai-paste" style="flex:1 1 100%;font-size:.75em;letter-spacing:.05em;text-transform:uppercase;opacity:.75">For your AI assistant</label><textarea id="ai-paste" readonly rows="2"  style="flex:1 1 240px;font:400 16px/1.5 ui-monospace,monospace;background:transparent;color:inherit;border:1px solid rgba(128,128,128,.35);border-radius:6px;padding:10px 12px;resize:none;field-sizing:content;overflow:hidden">Tell me about this site: https://denson.github.io/aroma-atlas/full_site.txt</textarea><button type="button" id="ai-copy" hidden style="font-weight:700;font-size:1em;border:2px solid currentColor;border-radius:6px;background:transparent;color:inherit;padding:0 20px;min-height:48px;cursor:pointer">Copy</button></div>
+
+  <p class="dek">Every terpene and flavorant in the corpus, rotatable in 3D — with the clinic thread and the entourage evidence.</p>
+  <p class="by">author: Denson Smith · part of <a href="./">The aroma molecules of cannabis</a></p>
+
+  <div class="note"><b>How this was made.</b> The molecules were resolved through <b>PubChem</b> (identity — CID,
+  formula, weight, and the live 3D structures), the science pulled from <b>OpenAlex</b>, the non-terpene "flavorant"
+  literature (Oswald et al.) <b>verified against CrossRef</b>, and the aroma descriptors / interaction effects from
+  grounded web search. The interactive 3D structures are snapshots of PubChem's records served with this page and
+  rendered by 3Dmol.js, so the whole page works without any third-party request; the snapshots are re-checked against
+  PubChem occasionally.</div>
+
+  <h2>The atlas — the terpenes</h2>
+  <p class="molhint">Each card carries the live PubChem 3D structure — drag to rotate, scroll to zoom. Use the controls to change representation or spin them all.</p>
+  <div class="ctl" id="ctl">
+    <span class="ctl-label">View:</span>
+    <button data-style="ballstick" class="active">Ball &amp; stick</button>
+    <button data-style="stick">Stick</button>
+    <button data-style="sphere">Space-fill</button>
+    <button data-style="line">Wireframe</button>
+    <span class="ctl-sep"></span>
+    <button id="spinbtn">⟳ Spin all</button>
+  </div>
+  <div id="terpgrid" class="grid"></div>
+  <p class="note">Read the last line of every card: cannabis doesn't smell like cannabis so much as it smells like a
+  <i>blend of other plants</i> — because it literally shares their aroma molecules. That shared chemical vocabulary is
+  what a structured knowledge graph captures.</p>
+
+  <h2>From a smell to the clinic — where β-caryophyllene points</h2>
+  <div class="star"><b>β-Caryophyllene</b> is the molecule that smells like black pepper — and published
+  pharmacology reports that it also binds the <b>CB2 receptor</b>, which earned it the nickname "dietary
+  cannabinoid." The nickname overstates it: <b>structurally it is not a cannabinoid at all — it is a terpene</b>,
+  the same molecule found in black pepper, cloves, and basil — but it acts as a drug at a cannabinoid receptor. Read that at its
+  actual strength: <b>one interesting avenue of research</b> that has drawn real attention and funding — a small
+  number of peer-reviewed papers, not established medicine. And peer review means exactly this much: reviewers
+  judged the work worth the scientific community's scrutiny. It does not make the content true; scrutiny is what
+  does, and most of it hasn't happened yet.
+  <div style="font-size:12px;color:#7c2d12;margin-top:8px">CB2 agonism / analgesia: <a href="https://doi.org/10.1016/j.euroneuro.2013.10.008" target="_blank" rel="noopener">doi:10.1016/j.euroneuro.2013.10.008</a> · dietary CB2 review: <a href="https://doi.org/10.3389/fphar.2021.590201" target="_blank" rel="noopener">doi:10.3389/fphar.2021.590201</a></div></div>
+
+  <p>Why hasn't the scrutiny happened? Not because the questions are uninteresting. Much of cannabis medical
+  research is starved: attention and funding are scarce, and a long-running stigma has kept serious money and
+  serious careers away from questions this size for decades. CB2 leads to one of the field's most-hyped clinical
+  questions — <i>does cannabis help dementia?</i> — so we read the <i>citation graph</i> of that literature to see
+  what it actually rests on. The honest version:</p>
+  <ul>
+    <li><b>The field stands on three pillars.</b> A receptor-pharmacology bedrock (the CB1/CB2 cloning papers,
+    ~5,000 citations each); a large body of <b>preclinical</b> neuroprotection work (cannabinoids protect neurons —
+    in mice and cells, e.g. Hampson 1998, Ramírez 2005); and a thin but real <b>clinical</b> line on agitation.</li>
+    <li><b>The only thing with real clinical support is symptom control — agitation.</b> A clean lineage runs
+    Volicer 1997 → van den Elsen 2015 → <b>Herrmann 2019</b> (a nabilone RCT) → a <b>2024 Johns Hopkins dronabinol
+    trial</b> (~30% agitation reduction vs placebo, well tolerated). It matters because the standard alternative —
+    antipsychotics — carries black-box stroke/death warnings in the elderly.</li>
+    <li><b>The disease-modifying dream is still in mice.</b> The "cannabinoids slow Alzheimer's" excitement rides on
+    that same 1998–2007 preclinical work, with no human trial behind it yet.</li>
+    <li><b>On risk:</b> heavy/disordered use is a <i>marker</i> of higher dementia risk, but the rigorous genetic
+    (Mendelian-randomization) evidence finds no causal link for moderate lifetime use — pattern and dose dominate.</li>
+  </ul>
+  <p>The point for this document: a single aroma molecule — the smell of black pepper — opens onto an entire clinical
+  literature, because it happens to also be a drug. Mapping those cross-domain reaches, with every claim grounded and
+  the hype separated from the evidence, is the work. <span style="color:var(--muted);font-size:12.5px">(The citation-graph
+  structure above is verified metadata; the recent-trial figures are from grounded web search, not independently
+  checked against the source papers.)</span></p>
+
+  <p style="margin:14px 0 0"><a href="dementia.html" style="color:#0e7490">→ Read the full cannabis-and-dementia citation analysis (the three-pillar breakdown)</a></p>
+
+  <h2>The trace modifiers — the beyond-terpene flavorants</h2>
+  <p>Terpene profiles are remarkably similar across cultivars that smell nothing alike; the exotic notes come
+  from these trace flavorant classes, each under 0.05% of the flower's mass. How they rewrite the whole
+  percept — and whether they stop at the nose — is told on <a href="./">the story page</a>.</p>
+  <h3>The trace modifiers</h3>
+  <p class="molhint">Each card leads with the compound class, then its example molecule — drag any to rotate; the view/spin controls above drive these too.</p>
+  <div id="flavgrid" class="grid"></div>
+  <h2 id="entourage">The entourage effect — honestly</h2>
+  <p>The popular claim is that terpenes and cannabinoids act <i>synergistically</i> — that the whole plant beats the
+  isolated molecule. The evidence is more careful than the marketing:</p>
+  <ul>
+    <li><b>Broad synergy is mostly unproven.</b> A Nov-2024 systematic review (André et al., <i>Pharmaceuticals</i>)
+    found individual terpenes have real effects, but the claim that they synergistically <i>enhance cannabinoid
+    efficacy</i> is clinically unproven for most combinations — commercial claims outpace the trial data.</li>
+    <li><b>But one specific pairing is real.</b> An April-2024 Johns Hopkins double-blind RCT found <b>d-limonene
+    significantly reduced THC-induced anxiety and paranoia — without dulling the high.</b> First concrete human evidence
+    that a terpene can selectively buffer a cannabinoid's side effects.</li>
+  </ul>
+  <div class="warnbox"><b>Verification flag:</b> the two 2024 studies above came from grounded web search, not the
+  citation graph, and have not been independently verified against the source papers. Treat as strong leads.</div>
+
+  <h2>Where the molecule map ends and the expert begins</h2>
+  <p>This atlas is the part a machine builds cleanly: <b>molecule → aroma → botanical source → receptor</b>, every
+  identifier real and checkable. What it <i>can't</i> finish is the <b>interaction</b> — how the trace flavorants bend
+  the terpene base, better or worse, and which of those blended profiles people actually prefer. That is a
+  sensory-panel + preference-modeling problem (precisely what the Oswald 2023 study used a human panel for), plus
+  validating compound effects in human cell models. The map is built; reading what it <i>means</i> for preference
+  needs a domain expert.</p>
+
+  <p style="margin:18px 0 0"><a href="./">&#8594; The story: the aroma molecules of cannabis &mdash; same atoms, different smells, different effects</a></p>
+
+  <div class="foot">PubChem (identity + live 3D structures) · OpenAlex (literature) · CrossRef (citation verification) ·
+  grounded web search (aroma, sources, entourage, recent dementia trials). Chemical identities and the Oswald DOIs are
+  exact; aroma descriptors and recent-trial figures are web-sourced. Denson Smith · built on lamm-mit's
+  scienceclaw (Apache-2.0). 3D viewer: 3Dmol.js.
+  From the same desk: <a href="https://colorado-medical-cannabis.org/">colorado-medical-cannabis.org</a>.</div>
+</div>
+
+<script>
+const TERPS = [
+  {n:"Myrcene", cid:31253, f:"C₁₀H₁₆", mw:"136.23", aroma:"Earthy, musky, clove", col:"earthy", src:"Also in mango, hops, lemongrass, thyme. The most abundant terpene in cannabis."},
+  {n:"Limonene", cid:22311, f:"C₁₀H₁₆", mw:"136.23", aroma:"Bright citrus", col:"citrus", src:"Also in citrus peel, rosemary, juniper. The terpene in the Johns Hopkins THC-anxiety RCT."},
+  {n:"α-Pinene", cid:6654, f:"C₁₀H₁₆", mw:"136.23", aroma:"Sharp pine", col:"pine", src:"Also in pine needles, rosemary, eucalyptus, orange peel."},
+  {n:"β-Pinene", cid:14896, f:"C₁₀H₁₆", mw:"136.23", aroma:"Pine, herbal", col:"pine", src:"Also in dill, basil, parsley, pine."},
+  {n:"Linalool", cid:6549, f:"C₁₀H₁₈O", mw:"154.25", aroma:"Floral, lavender", col:"floral", src:"Also in lavender, coriander, rosewood, mint."},
+  {n:"β-Caryophyllene", cid:5281515, f:"C₁₅H₂₄", mw:"204.35", aroma:"Spicy, peppery, clove", col:"pepper", src:"Also in black pepper, cloves, cinnamon, hops. Not a cannabinoid — a terpene that nonetheless binds the CB2 receptor like a drug.", star:true},
+  {n:"Humulene", cid:5281520, f:"C₁₅H₂₄", mw:"204.35", aroma:"Hoppy, woody", col:"hoppy", src:"Also in hops (cannabis's genetic cousin), sage, ginger, ginseng."},
+  {n:"Terpinolene", cid:11463, f:"C₁₀H₁₆", mw:"136.23", aroma:"Pine, floral, citrus", col:"herbal", src:"Also in lilac, tea tree, nutmeg, apples, rosemary."},
+  {n:"Ocimene", cid:6434062, f:"C₁₀H₁₆", mw:"136.23", aroma:"Sweet, herbal", col:"herbal", src:"Also in mint, parsley, basil, orchids, kumquats."},
+  {n:"Nerolidol", cid:5284507, f:"C₁₅H₂₆O", mw:"222.37", aroma:"Woody, floral, citrus", col:"woody", src:"Also in jasmine, ginger, tea tree, lemongrass."}
+];
+const FLAVS = [
+  {klass:'Volatile sulfur compounds — "gas"', n:"3-methyl-2-butene-1-thiol", cid:146586, f:"C₅H₁₀S", mw:"102.20", aroma:"skunky · diesel · pungent", col:"#6b7280", src:"The prenyl thiol behind the classic skunk/diesel aroma — the same molecule as skunked beer. Adds loud pungency over the terpene base (Chemdawg, Gorilla Glue)."},
+  {klass:'Tropical thiols — "juicy fruit"', n:"3-mercaptohexan-1-ol", cid:521348, f:"C₆H₁₄OS", mw:"134.24", aroma:"passionfruit · guava · real citrus", col:"#b8860b", src:"A 'tropicannasulfur' — also the key thiol in Sauvignon Blanc. The citrus you smell in Tangie is this, not limonene."},
+  {klass:'Esters — "candy"', n:"Ethyl hexanoate", cid:31265, f:"C₈H₁₆O₂", mw:"144.21", aroma:"sweet · apple · pastry", col:"#9b5cc9", src:"A fruity ester that masks harsh herbal terpene notes and lifts sweetness — the candy-sweet 'exotic' cultivars (Runtz, Gelato)."},
+  {klass:'Esters — "grape"', n:"Methyl anthranilate", cid:8635, f:"C₈H₉NO₂", mw:"151.16", aroma:"grape · wine-candy", col:"#9b5cc9", src:"The grape / 'grape soda' ester — another of the sweet 'exotic' flavorants."},
+  {klass:'Indole & skatole — "funk"', n:"Skatole", cid:6736, f:"C₉H₉N", mw:"131.17", aroma:"savory · dank · umami", col:"#7c3aed", src:"3-methylindole — trace = mouth-watering umami funk (GMO, Garlic Cookies); excess tips to fecal/musty. It also amplifies the gassy thiols."},
+  {klass:'Volatile fatty acids — "cheese"', n:"Octanoic acid", cid:379, f:"C₈H₁₆O₂", mw:"144.21", aroma:"sweaty · dairy · sharp", col:"#8a6d52", src:"With decanoic acid — the savory, cheese-rind nuance in some phenotypes."}
+];
+const COLORS = {earthy:"#a9742f",citrus:"#E0A400",pine:"#3f9d52",floral:"#9b5cc9",pepper:"#c2410c",hoppy:"#b8860b",herbal:"#4aa39a",woody:"#8a6d52"};
+const STYLES = { ballstick:{stick:{radius:0.13},sphere:{scale:0.22}}, stick:{stick:{radius:0.15}}, sphere:{sphere:{}}, line:{line:{}} };
+let curStyle='ballstick', spinning=false;
+const VIEWERS = [];
+
+function renderGrid(arr, gridEl, prefix){
+  arr.forEach((t,i)=>{
+    const c = COLORS[t.col] || t.col;
+    const card = document.createElement('div');
+    card.className='card'; card.style.borderLeftColor=c;
+    const head = t.klass
+      ? '<h3 class="klass" style="color:'+c+'">'+t.klass+'</h3><div class="molname">'+t.n+'</div>'
+      : '<h3>'+t.n+(t.star?' ★':'')+'</h3>';
+    card.innerHTML = head +
+      '<div class="id">PubChem CID '+t.cid+' · '+t.f+' · '+t.mw+'</div>'+
+      '<div class="mol" id="'+prefix+i+'"></div>'+
+      '<p class="aroma" style="color:'+c+'">'+t.aroma+'</p>'+
+      '<p class="src">'+t.src+'</p>';
+    gridEl.appendChild(card);
+  });
+}
+// Browsers cap live WebGL contexts (~16 in Chrome). The page has 21
+// molecules; creating all viewers eagerly silently killed the oldest
+// five contexts — the carvone pair and the cannabinoid trio. Viewers
+// are therefore created only near the viewport and released (context
+// and all) once they scroll far away; LIVE tracks the working set.
+const LIVE = new Map();
+const VISIBLE = new Set();
+function unloadMol(el){
+  const rec = LIVE.get(el); if(!rec) return;
+  const i = VIEWERS.indexOf(rec.v); if(i >= 0) VIEWERS.splice(i, 1);
+  try{
+    const c = el.querySelector('canvas');
+    if(c){ const gl = c.getContext('webgl') || c.getContext('experimental-webgl');
+           const x = gl && gl.getExtension('WEBGL_lose_context'); if(x) x.loseContext(); }
+  }catch(e){}
+  el.innerHTML = '';
+  LIVE.delete(el);
+}
+function loadMol(el, cid){
+  if (LIVE.has(el)) return;
+  if (LIVE.size >= 12){
+    for (const old of LIVE.keys()){ if (!VISIBLE.has(old)){ unloadMol(old); break; } }
+  }
+  let v;
+  try{ v = $3Dmol.createViewer(el, {backgroundColor:'white'}); }
+  catch(e){ el.innerHTML='<div class="molna">3D unavailable</div>'; return; }
+  VIEWERS.push(v);
+  LIVE.set(el, {v: v});
+  // Structures are snapshots of PubChem's records, served with the page
+  // (sdf/<cid>.sdf, refreshed by fetch_sdf.py) so a page view never
+  // depends on PubChem being up or unthrottled. PubChem stays as the
+  // fallback for a missing local file.
+  const remote = 'https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/'+cid+'/SDF?record_type=';
+  const grab = (url)=> fetch(url).then(r=>{ if(!r.ok) throw r.status; return r.text(); }).then(sdf=>{
+    if(!sdf || sdf.indexOf('$$$$') < 0) throw 'empty';
+    v.addModel(sdf, 'sdf'); v.setStyle({}, STYLES[curStyle]); v.zoomTo(); if(spinning) v.spin('y'); v.render();
+  });
+  grab('sdf/'+cid+'.sdf')
+    .catch(()=>grab(remote+'3d'))
+    .catch(()=>grab(remote+'2d'))
+    .catch(()=>{
+      const i = VIEWERS.indexOf(v); if(i >= 0) VIEWERS.splice(i, 1);
+      LIVE.delete(el);
+      el.innerHTML='<div class="molna">structure unavailable</div>';
+    });
+}
+function applyStyle(key){
+  curStyle = key;
+  VIEWERS.forEach(v=>{ try{ v.setStyle({}, STYLES[key]); v.render(); }catch(e){} });
+  document.querySelectorAll('#ctl button[data-style]').forEach(b=>b.classList.toggle('active', b.dataset.style===key));
+}
+function toggleSpin(){
+  spinning = !spinning;
+  VIEWERS.forEach(v=>{ try{ v.spin(spinning ? 'y' : false); }catch(e){} });
+  const b = document.getElementById('spinbtn'); if(b) b.classList.toggle('active', spinning);
+}
+function wireControls(){
+  document.querySelectorAll('#ctl button[data-style]').forEach(b=> b.onclick = ()=>applyStyle(b.dataset.style));
+  const sb = document.getElementById('spinbtn'); if(sb) sb.onclick = toggleSpin;
+}
+function initViewers(){
+  wireControls();
+  if (typeof $3Dmol === 'undefined') {
+    document.querySelectorAll('.mol').forEach(el=> el.innerHTML='<div class="molna">3D viewer failed to load</div>');
+    return;
+  }
+  const all = [];
+  TERPS.forEach((t,i)=> all.push({id:'mol'+i, cid:t.cid}));
+  FLAVS.forEach((t,i)=> all.push({id:'flav'+i, cid:t.cid}));
+  const els = [];
+  all.forEach(m=>{ const el = document.getElementById(m.id); if(el){ el.dataset.cid = m.cid; els.push(el); } });
+  if (!('IntersectionObserver' in window)) {
+    els.forEach((el,i)=> setTimeout(()=>loadMol(el, el.dataset.cid), i*30));
+    return;
+  }
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(en=>{
+      if (en.isIntersecting){ VISIBLE.add(en.target); loadMol(en.target, en.target.dataset.cid); }
+      else { VISIBLE.delete(en.target); unloadMol(en.target); }
+    });
+  }, {rootMargin:'400px 0px 400px 0px'});
+  els.forEach(el=> io.observe(el));
+}
+renderGrid(TERPS, document.getElementById('terpgrid'), 'mol');
+renderGrid(FLAVS, document.getElementById('flavgrid'), 'flav');
+if (document.readyState === 'complete') initViewers();
+else window.addEventListener('load', initViewers);
+</script>
+
+<hr style="margin:3em 0 1.5em;opacity:.35">
+<p style="font-size:.85em;opacity:.8;max-width:70ch">Every page here has a markdown twin; this page's is <a href="https://denson.github.io/aroma-atlas/atlas.md">https://denson.github.io/aroma-atlas/atlas.md</a> (also served with .txt appended), carrying everything the 3D viewers show, as text. <a href="https://denson.github.io/aroma-atlas/llms.txt">https://denson.github.io/aroma-atlas/llms.txt</a> describes how the record is organized.</p>
+
+<script>document.addEventListener("DOMContentLoaded",function(){var b=document.getElementById("ai-copy"),t=document.getElementById("ai-paste");if(!b||!t)return;b.hidden=false;function d(){b.textContent="Copied";setTimeout(function(){b.textContent="Copy"},2000)}function f(){t.focus();t.select();try{document.execCommand("copy");d()}catch(e){}}b.addEventListener("click",function(){if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t.value).then(d,f)}else{f()}});function az(){t.style.height="auto";t.style.height=t.scrollHeight+"px"}az();window.addEventListener("resize",az);t.addEventListener("focus",function(){t.select()})});</script>
+</body>
+</html>

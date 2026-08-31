@@ -23,8 +23,8 @@ of its own; content signals for it are as stated here: search yes,
 ai-input yes, ai-train yes.
 
 ## Pages
-- [The atlas](https://denson.github.io/aroma-atlas/index.md): the thesis (a plant's smell is a borrowed language), the terpenes and flavorants as data, the clinic and entourage evidence.
-- [Same atoms, different effects](https://denson.github.io/aroma-atlas/same-atoms.md): isomers, the carvone mirror pair, the C21H30O2 cannabinoid trio and delta-8 conversion, and blend pharmacology.
+- [The story](https://denson.github.io/aroma-atlas/index.md): the thesis (a plant's smell is a borrowed language), isomers, the carvone mirror pair, flavorant blend perception, the C21H30O2 cannabinoid trio and delta-8 conversion, and blend pharmacology.
+- [The atlas](https://denson.github.io/aroma-atlas/atlas.md): every terpene and flavorant as data, the caryophyllene clinic thread, the entourage evidence.
 - [Cannabis and dementia](https://denson.github.io/aroma-atlas/dementia.md): what the literature actually rests on - three pillars, what's new, the synthesis, the 2024-2026 frontier, references.
 
 ## Optional

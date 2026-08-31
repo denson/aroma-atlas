@@ -1,11 +1,11 @@
 """Generate the machine layer for the aroma atlas.
 
-One source, two faces: the compound data lives in index.html's TERPS/FLAVS
-arrays (the same objects the 3D cards render from), and the prose lives in
-the pages' own markup. This script derives the markdown mirrors from both,
+One source, two faces: the compound data lives in the pages' own script
+arrays (CHIRAL/CANNAB in index.html, TERPS/FLAVS in atlas.html — the same
+objects the 3D cards render from), and the prose lives in the pages' markup. This script derives the markdown mirrors from both,
 so the mirrors cannot drift from the pages.
 
-Run after any edit to index.html, same-atoms.html, or dementia.html:
+Run after any edit to index.html, atlas.html, or dementia.html:
     python gen_mirrors.py
 """
 
@@ -108,37 +108,39 @@ def write_twin(name: str, body: str) -> None:
 
 def main() -> None:
     index = (ROOT / "index.html").read_text(encoding="utf-8")
-    same_atoms = (ROOT / "same-atoms.html").read_text(encoding="utf-8")
+    atlas = (ROOT / "atlas.html").read_text(encoding="utf-8")
     dementia = (ROOT / "dementia.html").read_text(encoding="utf-8")
 
-    terps = parse_entries(index, "TERPS")
-    flavs = parse_entries(index, "FLAVS")
-    chiral = parse_entries(same_atoms, "CHIRAL")
-    cannab = parse_entries(same_atoms, "CANNAB")
+    terps = parse_entries(atlas, "TERPS")
+    flavs = parse_entries(atlas, "FLAVS")
+    chiral = parse_entries(index, "CHIRAL")
+    cannab = parse_entries(index, "CANNAB")
 
-    body = [preamble(f"{BASE}/", "The aroma molecules of cannabis: a terpene atlas.")]
+    # The story page: same atoms -> different smells -> different effects.
+    body = [preamble(f"{BASE}/", "The aroma molecules of cannabis: same atoms, different smells, different effects.")]
     body.extend(prose_backbone(index))
     body.append("")
-    body.extend(compound_section("The terpenes, as data", terps))
-    body.extend(compound_section("Beyond terpenes: the flavorants, as data", flavs))
-    write_twin("index.md", "\n\n".join([body[0]] + ["\n".join(body[1:])]))
-
-    sbody = [preamble(f"{BASE}/same-atoms.html",
-                      "Same atoms, different smells, different effects: isomers, enantiomers, and blends.")]
-    sbody.extend(prose_backbone(same_atoms))
-    sbody.append("")
-    sbody.extend(compound_section("The mirror pair (enantiomers), as data", chiral))
-    sbody.extend(compound_section("The cannabinoid isomers, as data", cannab))
+    body.extend(compound_section("The mirror pair (enantiomers), as data", chiral))
+    body.extend(compound_section("The cannabinoid isomers, as data", cannab))
     # Hand-authored back matter: appendix.md reaches the machine layer only,
     # never the page. Sourced detail and dated legal caveats live there
-    # (delta-8 chemistry and Colorado law - same-atoms subject matter).
+    # (delta-8 chemistry and Colorado law - story-page subject matter).
     appendix_path = ROOT / "appendix.md"
     if appendix_path.is_file():
-        sbody.append("## Appendix: notes for readers' AI assistants (not on the page)")
-        sbody.append("")
-        sbody.append(appendix_path.read_text(encoding="utf-8").strip())
-        sbody.append("")
-    write_twin("same-atoms.md", "\n\n".join([sbody[0]] + ["\n".join(sbody[1:])]))
+        body.append("## Appendix: notes for readers' AI assistants (not on the page)")
+        body.append("")
+        body.append(appendix_path.read_text(encoding="utf-8").strip())
+        body.append("")
+    write_twin("index.md", "\n\n".join([body[0]] + ["\n".join(body[1:])]))
+
+    # The reference page: every compound as data, clinic, entourage evidence.
+    abody = [preamble(f"{BASE}/atlas.html",
+                      "The atlas: every terpene and flavorant as data, the clinic thread, the entourage evidence.")]
+    abody.extend(prose_backbone(atlas))
+    abody.append("")
+    abody.extend(compound_section("The terpenes, as data", terps))
+    abody.extend(compound_section("Beyond terpenes: the flavorants, as data", flavs))
+    write_twin("atlas.md", "\n\n".join([abody[0]] + ["\n".join(abody[1:])]))
 
     dbody = [preamble(f"{BASE}/dementia.html",
                       "Cannabis and dementia: what the literature actually rests on.")]
@@ -150,14 +152,14 @@ def main() -> None:
         "> Concatenated machine-readable mirrors of every page.\n\n---\n\n"
         + (ROOT / "index.md").read_text(encoding="utf-8")
         + "\n\n---\n\n"
-        + (ROOT / "same-atoms.md").read_text(encoding="utf-8")
+        + (ROOT / "atlas.md").read_text(encoding="utf-8")
         + "\n\n---\n\n"
         + (ROOT / "dementia.md").read_text(encoding="utf-8")
     )
     (ROOT / "llms-full.txt").write_text(full, encoding="utf-8", newline="\n")
     (ROOT / "full_site.txt").write_text(full, encoding="utf-8", newline="\n")
 
-    print(f"mirrors written: index.md ({len(terps)} terpenes, {len(flavs)} flavorants), same-atoms.md ({len(chiral)} enantiomers, {len(cannab)} cannabinoids), dementia.md, llms-full.txt")
+    print(f"mirrors written: index.md ({len(chiral)} enantiomers, {len(cannab)} cannabinoids), atlas.md ({len(terps)} terpenes, {len(flavs)} flavorants), dementia.md, llms-full.txt")
 
 
 if __name__ == "__main__":
